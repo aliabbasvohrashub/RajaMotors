@@ -56,8 +56,8 @@
             </tr>
             <tr>
                 <td>
-                    <button id="submitbtn" class="btn btn-primary" value="Submit"> Create</button>&nbsp;&nbsp;
-                    <button class="btn" type="reset" value="Cancel" onclick="window.location.href='@Url.Action("Index", "Client")'">Cancel</button>
+                    <button id="submitbtn" class="btn btn-primary" value="Submit"> Create</button>&nbsp;&nbsp; 
+                    <button class="btn" type="reset" id="canclebtn" value="Cancel">Cancel</button>
                 </td>
             </tr>
             @Html.Hidden("UserId", User.Identity.GetUserId())
@@ -71,6 +71,11 @@
 
     $(document).ready(function () {
 
+
+        $("#canclebtn").click(function (e) {
+            $('#createClient').modal('toggle'); 
+            e.preventDefault();
+        });
         $('.ui-datepicker').each(function (i, v) {
             $(v).datepicker({
                 dateFormat: 'dd-M-yy',
@@ -92,6 +97,8 @@
                 return false;
             }
         });
+
+
 
             //var target = $('#Target').val();
             //if (target != '') {
