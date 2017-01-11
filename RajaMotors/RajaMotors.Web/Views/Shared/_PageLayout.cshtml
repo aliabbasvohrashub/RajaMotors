@@ -1,0 +1,226 @@
+﻿@model dynamic
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Goal</title>
+
+    @Styles.Render("~/Content/CSS")
+    @Scripts.Render("~/Scripts/PageLayout")
+
+    <script type="text/javascript">
+
+        function toggleDiv(divId) {
+            $(eval(divId)).toggle("slow");
+        }
+        function SearchUser(e, id) {
+            evt = e || window.event;
+            var userName = $("#searchUser").val();
+            var url = '/Group/SearchUserForGroup';
+
+            if ((evt != 13) && ($("#searchUser").val() != "" && $("#searchUser").val().length >= 1)) {
+
+                var getData = { 'username': userName, 'groupId': id };
+
+                $.get(url, getData, function (result) {
+                    $("#searchUser").autocomplete("enable");
+                    $("#searchUser").autocomplete({
+                        source: result,
+                        select: function (event, ui) {
+                            $.post("/Group/InviteUser", { id: id, UserId: ui.item.id }, function (e, res) {
+                                $("#inviteResult").html(e);
+                                $("#searchUser").val("");
+                                $("#searchUser").autocomplete("disable");
+                            });
+                        }
+                    });
+                });
+            }
+            else if ((window.event.keyCode == 50) || (window.event.keyCode == 46)) {
+                $("#searchUser").autocomplete("disable");
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <div class="navbar navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <section id="login">
+                    @Html.Partial("_Header")
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid margin-top">
+        <div class="row-fluid">
+            <div class="span9">
+                @RenderBody()
+            </div>
+            <div class="span3">
+                <div id="mygoals" class="well">
+                    <h5>
+                        Clients
+                    </h5>
+                    <div>
+                        @*@{ Html.RenderAction("MyGoals", "Goal"); }*@
+                    </div>
+                    @*</fieldset>*@
+                </div>
+                <div id="followedgoals" class="well">
+                    <h5 title="user following goals">
+                        Vehicles
+                    </h5>
+                    <div>
+                        @*@{ Html.RenderAction("GoalsFollowing", "Goal"); }*@
+                    </div>
+                </div>
+                <div id="mygroup" class="well">
+                    <h5>
+                        Services
+                    </h5>
+                    <div id="divCreateGroup" style="display: none">
+                    </div>
+                    <div>
+                        @*@{ Html.RenderAction("GroupsView", "Group"); }*@
+                    </div>
+                </div>
+                <div id="followedgroups" class="well">
+                    <div>
+                        <h5>
+                            FOLLOWED GROUPS
+                        </h5>
+                        <div>
+                            @*@{ Html.RenderAction("FollowedGroups", "Group"); }*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="creategoal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         style="display: none;" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="enableScroll()">
+                ×
+            </button>
+            <h5 id="myModalLabel">
+                Create Goal
+            </h5>
+        </div>
+        <div class="modal-body" id="createClientModal">
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="enableScroll()">
+                Close
+            </button>
+        </div>
+    </div>
+</body>
+</html>
+<style type="text/css">
+    .thumbnail {
+        width: 50px;
+        height: 40px;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+        $('#notification').niceScroll();
+    });
+
+    $(function () {
+        $('#divFollowedGroup').niceScroll();
+    });
+
+    $(function () {
+        $('#divGroup').niceScroll();
+    });
+
+
+    function cancelProfile(id) {
+        e.preventDefault();
+        window.location.href = '/Account/UserProfile/id'; //"UserProfile", "Account", new { id = (((RajaMotors.Core.Models.RajaMotorsUser)(User.Identity)).UserId) })'
+    }
+    function saveUpdate(target, metric) {
+
+        var update = 'Please Enter Update';
+        var status = 'Please Enter Status';
+        $("#postupdate").attr("disabled", "true");
+
+        var Gid = $('#GoalId').val();
+        var CurrUpdte = $('#Update').val();
+        var CurrStatus = $('#Status').val();
+
+        if ($('#Update').val() == '') {
+            alert(update);
+            $("#postupdate").removeAttr("disabled");
+        }
+        //        else if (metric != 0 && $('#Status').val() == '' && target != "") {
+
+        //            //alert(status);
+        //            $("#postupdate").removeAttr("disabled");
+        //        }
+        else {
+            var PostData = { 'GoalId': Gid, 'Updatemsg': CurrUpdte, 'status': CurrStatus };
+            var url = '/Goal/SaveUpdate';
+            $.post(url, PostData, function (response) {
+                LoadReport();
+                $("#divupdate").html(response);
+                $("#Update").val('');
+                $("#Status").val('');
+                $("#postupdate").removeAttr("disabled");
+
+            });
+        }
+    }
+
+
+    function clearStatusError() {
+        $("#statusError").empty();
+        $("#postupdate").removeAttr("disabled");
+    }
+
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            alert('Please Enter Integers');
+        var status = $('#Status').val();
+        var dblVar = parseFloat(status);
+        if (isNaN(dblVar)) {
+            $("#statusError").html('<label style="color:red;">Enter a valid status.</label>')
+            $('#Status').val('');
+        }
+        else {
+            $("#statusError").empty();
+        }
+    }
+
+
+    $(document).ready(function () {
+        // function LoadReport() {
+        //        var goalId = $('#GoalId').val();
+        //        var updates = $('#Updates').val();
+        //        if (updates != 0) {
+        //            $.get("/Goal/GetGoalReport", { id: goalId }, function (result) {
+
+        //                var data = [], target = [];
+        //                $(result.Data).each(function (i, v) {
+        //                    data.push([v.Date, v.Value]);
+        //                });
+        //                $(result.Target).each(function (i, v) {
+        //                    target.push([v.EndDate, v.Target]);
+        //                });
+        //                setTimeout(drawChart(data, target), 10000);
+        //            });
+        //        }
+        // }
+
+
+    });
+
+
+
+</script>

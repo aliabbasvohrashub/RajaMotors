@@ -1,0 +1,84 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+    </a>
+    <a class="brand" href='@Url.Action("Index", "Home")'>RjM</a>
+    <div class="btn-group pull-right">
+        <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="icon-user">
+            </i>
+            @{
+                var name = User.Identity.Name;
+                <text> @name </text>
+            }
+            <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                @Html.ActionLink("Profile", "UserProfile", "Account", new { id = User.Identity.GetUserId() }, new { @title = "View Profile" })
+        </li>
+        <li class="divider"></li>
+        @*<li><a href="/Account/LogOff">Sign Out</a></li>*@
+        <li>@Html.ActionLink("Sign Out", "LogOff", "Account")</li>
+    </ul>
+</div>
+
+    <div class="nav-collapse">
+        <ul class="nav">
+            <li><a href="/Home/Index">Home</a></li>
+            <li><a href="/Client/ClientList">Clients</a></li>
+            <li><a href="/Vehicle/Index">Vehicles</a></li>
+            <li><a href="/Service/Index">Service</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    Manage Services
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class=""><a href="/Service/Index">Create Service</a></li>@*onclick="GetFollowers();"*@
+                    <li class=""><a href="/Service/Index">Manage Service</a> </li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    Client
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="">
+                        <a data-toggle="modal" href="#createClient" onclick="CreateClient();">
+                            Create
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <form action="/Search/SearchAll" class="navbar-search" id="searchform" method="post">
+                    <input class="search-query span2" id="searchText" name="searchText" placeholder="Search" type="text" value="@ViewBag.searchtext" />
+                    <input type="submit" style="display: none;" />
+                </form>
+            </li>
+        </ul>
+    </div>
+
+                }
+<link href="/Content/CustomStyles.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".nav-collapse .nav li a").click(function (e) {
+            $(".nav-collapse .nav .active").removeClass("active")
+            $(this).parent().addClass("active")
+        });
+    });
+
+    $('#searchText').keypress(function (e) {
+        var code = (e.keyCode ? e.keyCode : e.which);
+        if (code == 13 && $(this).val() != "") {
+            $('#searchform').submit();
+        }
+
+    });
+
+</script>

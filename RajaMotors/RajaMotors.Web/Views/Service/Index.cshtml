@@ -1,0 +1,66 @@
+﻿@using Microsoft.AspNet.Identity
+@model IEnumerable<RajaMotors.Web.ViewModels.ServiceViewModel>
+@{
+    ViewBag.Title = "EditProfileView";
+    Layout = "~/Views/Shared/_HomeLayoutRajaMotors.cshtml";
+}
+
+<h2>Services</h2>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="col_w620_content">
+            <fieldset>
+                <legend>Service List</legend>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ClientName</th>
+                            <th>ClientMobile</th>
+                            <th>ClientAddress</th>
+                            <th>VehicleModelName</th>
+                            <th>VehicleModelNumber</th>
+                            <th>ServiceDate</th>
+                            <th>ServiceDueDate</th>
+                            <th>ServiceDateAdded</th>
+                            <th>ServiceDateModified</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @item.Vehicle.Client.ClientName
+                                </td>
+                                <td>
+                                    @item.Vehicle.Client.ClientMobile
+                                </td>
+                                <td>   
+                                    @item.Vehicle.Client.ClientAddress
+                                <td>
+                                    @item.Vehicle.VehicleModelName
+                                </td>
+                                <td>
+                                    @item.Vehicle.VehicleModelNumber
+                                </td>
+                                <td>
+                                    @item.ServiceDate
+                                </td>
+                                <td>
+                                    @item.ServiceDueDate
+                                </td>
+                                <td>
+                                    @item.ServiceDateAdded
+                                </td>
+                                <td>
+                                    @item.ServiceDateModified
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </fieldset>
+            </div>
+        </div>
+    </div>

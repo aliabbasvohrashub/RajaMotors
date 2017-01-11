@@ -1,0 +1,131 @@
+﻿@using Microsoft.AspNet.Identity
+@model RajaMotors.Web.ViewModels.ClientPageViewModel 
+@{
+    ViewBag.Title = "EditProfileView"; 
+}   
+
+
+
+<div class="well span12">
+    <div class="span4" style="padding-left:30px;"> <h4>Clients</h4></div>
+    <div class="span8">
+        <strong>Sort By</strong>
+        @Html.DropDownList("sortby", Model.SortBy, new { @onchange = "ListOfClients();" })
+        <strong>Filter By</strong>
+        @Html.TextBox("filterby", Model.FilterBy, new { @onblur = "ListOfClients();" })
+    </div>
+
+    <div id="listofClients" style="float:left;" class="span11">
+        @if (Model.clientList.Count() == 0)
+        {
+            <div class="alert alert-info">
+                No results found
+            </div>
+        }
+        else
+        {
+            <div class="span12" id="clientListContainer" style="margin-top:10px;">
+                <hr />
+                <table class="table">
+                    @Html.Partial("_ClientList", Model.clientList)
+                </table>
+            </div>
+            if (Model.clientList.Count() == 5)
+            {
+                <script type="text/javascript"> 
+                </script>
+                <div id="morelink"> <a href="#" onclick="loadMore();">More Goals</a></div>
+            }
+        }
+    </div>
+</div>
+<div id="content" style="color:Red;"></div>
+<div class="hiddenData" style="display:none;"></div>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        //to load templates to a hidden div
+        $.get('/Templates/Templates.htm', function (data) {
+            $('.hiddenData').html(data);
+        });
+    });
+
+    $(window).scroll(function () {
+        if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+            loadMore();
+        }
+    });
+    var current = 0;
+    var currentClientPage = 0;
+    function loadMore() {
+        var sortBy = $('#sortby').val();
+        var filterBy = $('#filterby').val();
+
+
+        if (currentClientPage > -1) {
+            currentClientPage++;
+
+            $.ajax({
+                url: "/Client/ClientList",
+                type: "POST",
+                data: { sortBy: sortBy, filterBy: filterBy, page: currentClientPage },
+                dataType: "json",
+                beforeSend: function () { 
+                    $("#clientListContainer").find(".alert-info").remove();
+                    $("#clientListContainer").append('<div class="alert alert-info" id="loadimage">Loading...</div>');
+                },
+                success: function (data) {
+                    $('#loadimage').remove();
+                    if (data.length != 0) {
+                        loadTemplate(data);
+                        $('#morelink').show();
+                        if (data.length < 5) {
+                            addNoMoreClients();
+                        }
+                    } else {
+                        addNoMoreClients();
+                    }
+                }
+            });
+
+        }
+
+        function addNoMoreClients() {
+            $('#morelink').hide();
+            currentClientPage = -1;
+            $("#clientListContainer").find(".alert-info").remove();
+            $("#clientListContainer").append('<div class="alert alert-info"> No more goals found </div>');
+        }
+    }
+
+    function loadTemplate(data) {
+        var source = $("#clientList-template").html();
+
+        var template = Handlebars.compile(source);
+        $("#clientListContainer table tbody ").append(template({ objects: data }));
+    }
+
+    function ListOfClients() {
+        var sortby = $("#sortby").val();
+        var filterby = $("#filterby").val();
+        var url = '/Client/ClientList';
+        $.get(url, { 'sortBy': sortby, 'filterBy': filterby, 'page': 0 }, function (result) { 
+            $("#clientListContainer table tbody ").html('');
+            $("#clientListContainer div").remove();
+            if (result == '') {
+                $("#clientListContainer").append('<div class="alert alert-info"> No clients found </div>');
+                $('#morelink').hide();
+            }
+            else {
+                $('#morelink').show();
+            }
+            currentClientPage = 0; 
+            loadTemplate(result);
+
+        });
+
+        //document.location.href="/Goal/GoalList?sortBy="+sortby+"&filterBy="+filterby;
+
+    }
+</script>

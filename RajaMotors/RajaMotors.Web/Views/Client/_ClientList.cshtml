@@ -1,0 +1,58 @@
+﻿@model IEnumerable<RajaMotors.Web.ViewModels.ClientViewModel>
+    @{
+        ViewBag.Title = "List of Clients";
+    }
+
+
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>ClientName</th>
+            <th>ClientMobile</th>
+            <th>ClientAddress</th>
+            <th>Address</th>
+            <th>Address</th>
+            <th>Active</th>
+            <th>ServiceDateAdded</th>
+            <th>Edit</th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @item.ClientId
+                </td>
+                <td>
+                    @item.ClientName
+                </td>
+                <td>   @item.ClientMobile
+                <td>
+                    @item.ClientAddress
+                </td>
+                <td>
+                    @item.ClientAddress1
+                </td>
+                <td>
+                    @item.ClientAddress2
+                </td>
+                <td>
+                    @item.ClientIsActive
+                    @Html.CheckBox("Checked", @item.ClientIsActive)
+                </td>
+                <td>
+                    @item.ClientDateAdded
+                </td>
+                <td>
+                    @*<span style="float:right">*@
+                        @Html.ActionLink("Edit", "Edit", "Client", new { clientId = item.ClientId }, new { @class = "btn btn-primary btn-small" })
+                        @Html.ActionLink("Delete", "Delete", "Client", new { clientId = item.ClientId }, new { @class = "btn btn-primary btn-small" })
+                    @*</span>*@
+                </td>
+            </tr>
+        }
+    </tbody>
+
