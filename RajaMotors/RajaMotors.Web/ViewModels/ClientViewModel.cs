@@ -16,14 +16,17 @@ namespace RajaMotors.Web.ViewModels
 
         [Required(ErrorMessage = "*")]
         public string ClientMobile { get; set; }
-        [Required(ErrorMessage = "*")]
+        [Required(ErrorMessage = "*")] 
         public string ClientAddress { get; set; }
+        [Required(ErrorMessage = "*")]
         public string ClientAddress1 { get; set; }
+        [Required(ErrorMessage = "*")]
         public string ClientAddress2 { get; set; }
 
         [Required(ErrorMessage = "*")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MMM-yyyy}")]
-        public string ClientDateAdded { get; set; }         
+        public string ClientDateAdded { get; set; }
+        
         public string ClientDateModified { get; set; }       
         public IEnumerable<Vehicle> Vehicles { get; set; }
         public IEnumerable<RajaMotors.Model.Models.Service> services { get; set; }

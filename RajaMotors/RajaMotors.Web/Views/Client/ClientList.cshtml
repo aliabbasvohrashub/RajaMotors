@@ -7,14 +7,17 @@
 
 
 <div class="well span12">
-    <div class="span4" style="padding-left:30px;"> <h4>Clients</h4></div>
+    <div class="span4" style="padding-left:30px;"> <h4>Clients</h4></div>     
     <div class="span8">
         <strong>Sort By</strong>
         @Html.DropDownList("sortby", Model.SortBy, new { @onchange = "ListOfClients();" })
         <strong>Filter By</strong>
         @Html.TextBox("filterby", Model.FilterBy, new { @onblur = "ListOfClients();" })
     </div>
-
+    <div class="span1 pull-right">
+        <a data-toggle="modal" href="#createClient" onclick="CreateClient();"> Create  </a>
+        <div onclick="CreateClient();">Add Client </div>
+    </div>
     <div id="listofClients" style="float:left;" class="span11">
         @if (Model.clientList.Count() == 0)
         {
@@ -42,9 +45,8 @@
 <div id="content" style="color:Red;"></div>
 <div class="hiddenData" style="display:none;"></div>
 <script type="text/javascript">
-
-    $(document).ready(function () {
-
+    
+    $(document).ready(function () { 
         //to load templates to a hidden div
         $.get('/Templates/Templates.htm', function (data) {
             $('.hiddenData').html(data);
@@ -128,4 +130,6 @@
         //document.location.href="/Goal/GoalList?sortBy="+sortby+"&filterBy="+filterby;
 
     }
+
+    
 </script>

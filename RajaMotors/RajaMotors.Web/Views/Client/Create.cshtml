@@ -3,7 +3,9 @@
 
 @{
     ViewBag.Title = "Create";
-}
+    Layout = "";
+} 
+
 <style type="text/css">
     .modalInput {
         margin: 3px 0 3px 0 !important;
@@ -18,7 +20,7 @@
         <table class="table">
             <tr>
                 <td>
-                    @Html.TextBoxFor(model => model.ClientName, new { @class = "span3", @placeholder = "Enter the Name" })  
+                    @Html.TextBoxFor(model => model.ClientName, new { id= "ClientName", @class = "span3", @placeholder = "Enter the Name" })  
                     @Html.ValidationMessageFor(model => model.ClientName)
                 </td>
             </tr>
@@ -79,21 +81,32 @@
 
         });
 
-        //$('#clientForm').submit(function (e) {
-        //    var target = $('#Target').val();
-        //    if (target != '') {
-        //        if (DecimalValidate(target)) {
-        //            $('#NumberValidation').html('');
-        //            return true;
-        //        }
-        //        else {
-        //            $('#NumberValidation').html('<label class="field-validation-error">Please enter valid status</label>');
-        //            e.preventDefault();
-        //            return false;
-        //        }
-        //    }
+        $('#clientForm').submit(function (e) {
+            var target = $('#ClientName').val();
+            if (target != '') {
 
-        //});
+                return true;
+            }
+            else { 
+                e.preventDefault();
+                return false;
+            }
+        });
+
+            //var target = $('#Target').val();
+            //if (target != '') {
+            //    if (DecimalValidate(target)) {
+            //        $('#NumberValidation').html('');
+            //        return true;
+            //    }
+            //    else {
+            //        $('#NumberValidation').html('<label class="field-validation-error">Please enter valid status</label>');
+            //        e.preventDefault();
+            //        return false;
+            //    }
+            //}
+
+        
 
     });   
 
@@ -108,3 +121,6 @@
 
 
 </script>
+<script src="~/Scripts/jquery-1.7.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
