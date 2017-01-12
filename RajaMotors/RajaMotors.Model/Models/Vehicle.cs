@@ -11,6 +11,8 @@ namespace RajaMotors.Model.Models
         public DateTime VehicletDateAdded { get; set; }
         public DateTime? VehicletDateModified { get; set; } 
         public bool VehicleIsActive { get; set; }
+
+        public int ClientId{ get; set; }
         public virtual Client Client {get;set;}
         public Vehicle()
         {

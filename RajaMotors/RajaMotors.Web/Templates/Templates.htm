@@ -24,9 +24,17 @@
                 <td>
                     {{ClientAddress2}}
                 </td>
-                <td>
-                    {{ClientIsActive}}
+                <td> 
                     <input checked="checked" id="Checked" name="Checked" type="checkbox" value={{ClientIsActive}} />
+                </td>
+                <td>
+                    {{#if Vehicles}}
+                        {{Vehicles}}
+                    {{else}}
+                        0
+                    {{/if}}
+                   
+                    
                 </td>
                 <td>
                     {{ClientDateAdded}}

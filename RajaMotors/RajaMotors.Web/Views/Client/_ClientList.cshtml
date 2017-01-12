@@ -13,6 +13,7 @@
             <th>Address</th>
             <th>Address</th>
             <th>Active</th>
+            <th>Vehicles</th>
             <th>ServiceDateAdded</th>
             <th>Edit</th>
 
@@ -39,9 +40,19 @@
                 <td>
                     @item.ClientAddress2
                 </td>
-                <td>
-                    @item.ClientIsActive
+                <td> 
                     @Html.CheckBox("Checked", @item.ClientIsActive)
+                </td>
+                <td>
+                    @if (item.Vehicles != null)
+                   {
+                    @item.Vehicles.Count()
+                    }
+                    else
+                    {
+                        @("0");
+                    }
+
                 </td>
                 <td>
                     @item.ClientDateAdded

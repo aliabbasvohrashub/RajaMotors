@@ -12,7 +12,8 @@ namespace RajaMotors.Data.Configuration
     {
         public VehicleConfiguration()
         {
-            Property(c => c.VehicleId).IsRequired(); 
+            Property(v => v.VehicleId).IsRequired();
+            Property(v => v.ClientId).IsRequired();
         }
     }
 }

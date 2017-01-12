@@ -19,15 +19,14 @@ namespace RajaMotors.Data.Infrastructure
             cl.ClientIsActive = true;
             cl.ClientAddress = "B-28, Prerna Tution Class";
             cl.ClientAddress1 = "Near Chittekhan Lane";
-            cl.ClientAddress2 = "Gendigate Road Vadodara-390 017";
-
-            context.Clients.Add(cl);
+            cl.ClientAddress2 = "Gendigate Road Vadodara-390 017";  
 
             Vehicle vehicle = new Vehicle();
             vehicle.VehicleModelName = "Honda Activa";
             vehicle.VehicleModelNumber = "GJ-6 BQ-3822";
             vehicle.Client = cl;
             vehicle.VehicletDateAdded = System.DateTime.Now;
+            vehicle.ClientId = cl.ClientId;
             context.Vehicles.Add(vehicle);
 
             Service service = new Service();
@@ -37,6 +36,10 @@ namespace RajaMotors.Data.Infrastructure
             service.Vehicle= vehicle;
 
             context.Services.Add(service);
+
+            cl.Vehicles.Add(vehicle);
+
+            context.Clients.Add(cl);
             context.Commit();
         }
     }
