@@ -13,7 +13,8 @@ namespace RajaMotors.Service
     {
         IEnumerable<Vehicle> GetVehicles();
         Vehicle GetVehicleById(long Id);
-        IEnumerable<Vehicle> GetVehicles(IEnumerable<int> vehicleIds);
+        IEnumerable<Vehicle> GetVehicles(IEnumerable<int> vehicleIds); 
+        IEnumerable<Vehicle> ClientVehicles(int clientId); 
         IEnumerable<Vehicle> SearchVehicles(string modelName);
         Vehicle Update(Vehicle vehicle);
         Vehicle Delete(Vehicle vehicle);
@@ -86,6 +87,11 @@ namespace RajaMotors.Service
         public IEnumerable<Vehicle> SearchVehicles(string modelName)
         {
             return vehicleRepository.GetMany(x => x.VehicleModelName.Contains(modelName));
+        }
+
+        public IEnumerable<Vehicle> ClientVehicles(int clientId)
+        {
+            return vehicleRepository.GetClientVehicles(clientId);
         }
     }
 }

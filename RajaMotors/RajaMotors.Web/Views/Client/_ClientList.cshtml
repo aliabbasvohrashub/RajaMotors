@@ -45,8 +45,8 @@
                 </td>
                 <td>
                     @if (item.Vehicles != null)
-                   {
-                    @item.Vehicles.Count()
+                    {
+                        <a href="/Vehicle/Index?clientId=@item.ClientId">@item.Vehicles.Count()</a>
                     }
                     else
                     {
@@ -60,7 +60,9 @@
                 <td>
                     @*<span style="float:right">*@
                         @Html.ActionLink("Edit", "Edit", "Client", new { clientId = item.ClientId }, new { @class = "btn btn-primary btn-small" })
+                        @Html.ActionLink("Detail", "Detail", "Client", new { clientId = item.ClientId }, new { @class = "btn btn-primary btn-small" })
                         @Html.ActionLink("Delete", "Delete", "Client", new { clientId = item.ClientId }, new { @class = "btn btn-primary btn-small" })
+
                     @*</span>*@
                 </td>
             </tr>

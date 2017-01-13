@@ -58,6 +58,14 @@ namespace RajaMotors.Web.Controllers
         }
 
 
+        public ActionResult Detail(int clientId)
+        {
+            Client client = clientService.GetClientById(clientId);
+            Mapper.Initialize(x => x.CreateMap<Client, ClientViewModel>());
+            ClientViewModel clientvm = Mapper.Map<Client, ClientViewModel>(client);
+            return View(clientvm);
+        }
+
         [HttpGet]
         public ActionResult Create()
         {     

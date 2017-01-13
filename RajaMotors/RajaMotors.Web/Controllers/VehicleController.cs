@@ -29,13 +29,33 @@ namespace RajaMotors.Web.Controllers
         }
 
 
-        public ActionResult Index()
+        public ActionResult Index(int? clientId)
         {
-            IEnumerable<Vehicle> vehicles = vehicleService.GetVehicles();
-            Mapper.Initialize(x => x.CreateMap<Vehicle, VehicleViewModel>());
+            if (clientId == null)
+            {
+                IEnumerable<Vehicle> vehicles = vehicleService.GetVehicles();
+                Mapper.Initialize(x => x.CreateMap<Vehicle, VehicleViewModel>());
 
-            IEnumerable<VehicleViewModel> vehiclesvm = Mapper.Map<IEnumerable<Vehicle>, IEnumerable<VehicleViewModel>>(vehicles);
-            return View(vehiclesvm);
+                IEnumerable<VehicleViewModel> vehiclesvm = Mapper.Map<IEnumerable<Vehicle>, IEnumerable<VehicleViewModel>>(vehicles);
+                return View(vehiclesvm);
+            }
+            else
+            {
+                IEnumerable<Vehicle> vehicle = vehicleService.ClientVehicles(Convert.ToInt16(clientId));
+                Mapper.Initialize(v => v.CreateMap<Vehicle, VehicleViewModel>());
+
+                IEnumerable<VehicleViewModel> vehiclevm = Mapper.Map<IEnumerable<Vehicle>, IEnumerable<VehicleViewModel>>(vehicle);
+                return View(vehiclevm);
+            }
+        }
+
+        public ActionResult Details(int clientId)
+        { 
+            IEnumerable<Vehicle> vehicle = vehicleService.ClientVehicles(clientId);
+            Mapper.Initialize(v => v.CreateMap<Vehicle, VehicleViewModel>()); 
+
+            IEnumerable<VehicleViewModel> vehiclevm = Mapper.Map<IEnumerable<Vehicle>, IEnumerable<VehicleViewModel>>(vehicle);
+            return View("Index",vehiclevm); 
         }
     }
 }
