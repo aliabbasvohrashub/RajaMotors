@@ -1,0 +1,88 @@
+﻿@using Microsoft.AspNet.Identity
+@model RajaMotors.Web.ViewModels.VehicleViewModel
+<div class="span12 well">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <h4>Edit @Html.DisplayFor(model => model.VehicleId)</h4>
+            @Html.HiddenFor(model => model.VehicleId)
+            <table class="table">
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Client.ClientName, "Client Name")
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model => model.Client.ClientName, new { @class = "span11" })
+                        @Html.ValidationMessageFor(model => model.Client.ClientName)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.VehicleModelName, "VehicleModelName")
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model => model.VehicleModelName, new { @class = "span11" })
+                        @Html.ValidationMessageFor(model => model.VehicleModelName)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.VehicleModelNumber, "VehicleModelNumber")
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model => model.VehicleModelNumber, new { @class = "span11" })
+                        @Html.ValidationMessageFor(model => model.VehicleModelNumber)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.VehicleIsActive, "VehicleIsActive")
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model => model.VehicleIsActive, new { @class = "span11" })
+                        @Html.ValidationMessageFor(model => model.VehicleIsActive)
+                    </td>
+                </tr> 
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.VehicletDateAdded, "Date")
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model => model.VehicletDateAdded, String.Format("{0:dd-MMM-yyyy}", Model.VehicletDateAdded), new { @class = "ui-datepicker span11"})
+                        @Html.ValidationMessageFor(model => model.VehicletDateAdded)
+                    </td>
+                </tr> 
+                <tr>
+                    <td>
+                        @Html.Hidden("UserId", User.Identity.GetUserId())
+                    </td>
+                </tr>
+            </table>
+            <button class="btn btn-primary" type="submit" value="Save" onclick="editSave(@Model.VehicleId)">
+                Save
+            </button>
+            <button class="btn" type="reset" value="Cancel" onclick="window.location.href='@Url.Action("Index", "Client")'">
+                Cancel
+            </button>
+        </fieldset>
+
+        <div id="divEdit@(Model.VehicleId)">
+        </div>
+    }
+</div>
+ 
+<script type="text/javascript">  
+    $(document).ready(function () {
+        $('.ui-datepicker').each(function (i, v) {
+            $(".ui - datepicker").val(" ");
+            $(v).datepicker({
+                dateFormat: 'dd-M-yy',
+                buttonImage: '@Url.Content("~/Content/calendar.gif")',
+                buttonImageOnly: true,
+                showOn: "button"
+            });
+        });
+    });
+</script>

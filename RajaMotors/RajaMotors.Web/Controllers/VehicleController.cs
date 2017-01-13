@@ -29,7 +29,7 @@ namespace RajaMotors.Web.Controllers
         }
 
 
-        public ActionResult Index(int? clientId)
+        public ActionResult IndexOld(int? clientId)
         {
             if (clientId == null)
             {
@@ -47,6 +47,16 @@ namespace RajaMotors.Web.Controllers
                 IEnumerable<VehicleViewModel> vehiclevm = Mapper.Map<IEnumerable<Vehicle>, IEnumerable<VehicleViewModel>>(vehicle);
                 return View(vehiclevm);
             }
+        }
+
+
+        public ActionResult VehicleList(int? clientId, string filterBy, int page = 0, string sortBy = "Name")
+        { 
+            IEnumerable<Vehicle> vehicles = vehicleService.GetVehiclessByPage(page, 5, sortBy, filterBy, clientId);
+            Mapper.Initialize(x => x.CreateMap<Vehicle, VehicleViewModel>());
+
+            IEnumerable<VehicleViewModel> vehiclesvm = Mapper.Map<IEnumerable<Vehicle>, IEnumerable<VehicleViewModel>>(vehicles);
+            return View(vehiclesvm);
         }
 
         public ActionResult Details(int clientId)

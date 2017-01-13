@@ -225,6 +225,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\VehiclePageViewModel.cs" />
     <Compile Include="ViewModels\ClientPageViewModel.cs" />
     <Compile Include="ViewModels\ClientViewModel.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
@@ -528,6 +529,9 @@
     <Content Include="Views\Client\ClientList.cshtml" />
     <Content Include="Views\Client\Detail.cshtml" />
     <Content Include="Views\Vehicle\Details.cshtml" />
+    <Content Include="Views\Vehicle\Edit.cshtml" />
+    <Content Include="Views\Vehicle\VehicleList.cshtml" />
+    <Content Include="Views\Vehicle\_VehicleList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

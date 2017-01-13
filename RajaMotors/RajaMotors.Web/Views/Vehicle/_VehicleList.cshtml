@@ -1,0 +1,61 @@
+﻿@using Microsoft.AspNet.Identity
+@model IEnumerable<RajaMotors.Web.ViewModels.VehicleViewModel>
+@{
+    ViewBag.Title = "List of Vehicles"; 
+}
+<h2>Vehicles</h2>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="col_w620_content">
+            <fieldset>
+                <legend>Vehicle List</legend>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>VehicleName</th>
+                            <th>ModelName</th>
+                            <th>ModelNumber</th>
+                            <th>ClientName</th>
+                            <th>ClientMobile</th>                            
+                            <th>DateAdded</th>
+                            <th>DateModified</th>                             
+                            <th>Active</th>
+                        </tr>
+                    </thead> 
+                    <tbody>
+                        @foreach (var item in Model)
+            {
+                            <tr>
+                                <td>
+                                    @item.VehicleModelName
+                                </td>
+                                <td>
+                                    @item.Client.ClientName
+                                </td>
+                                <td>
+                                    @item.Client.ClientMobile
+                                </td>
+                                <td>
+                                    @item.VehicleModelName
+                                </td>
+                                <td>
+                                    @item.VehicleModelNumber
+                                </td>
+                                <td>
+                                    @item.VehicletDateAdded
+                                </td>
+                                <td>
+                                    @item.VehicletDateModified
+                                </td>
+                                <td>
+                                    @item.VehicleIsActive
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </fieldset>
+        </div>
+    </div>
+</div>
