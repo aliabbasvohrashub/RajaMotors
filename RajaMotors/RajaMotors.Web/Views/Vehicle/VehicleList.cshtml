@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
-@model IEnumerable<RajaMotors.Web.ViewModels.VehiclePageViewModel>
+@model RajaMotors.Web.ViewModels.VehiclePageViewModel
 @{
     ViewBag.Title = "Vehicles";
     //Layout = "~/Views/Shared/_HomeLayoutRajaMotors.cshtml";
@@ -14,11 +14,12 @@
         @Html.TextBox("filterby", Model.FilterBy, new { @onblur = "ListOfVehicles();" })
     </div>
     <div class="span1 pull-right">
-        <a data-toggle="modal" href="#createVehicle" onclick="CreateVehicle();"> Create  </a>
-        <div onclick="CreateVehicle();">Add Vehicle </div>
+        <a data-toggle="modal" href="#createVehicle" onclick="CreateVehicle();"> Add Vehicle </a> 
     </div>
-    <div id="listofVehicles" style="float:left;" class="span11">
-        @if (Model.vehicleList.Count() == 0)
+
+    <div id="listofVehicles" style="float: left;" class="span11">
+        <input type="hidden" id="cid" value="@Model.ClientId"/>
+        @if (!Model.vehicleList.Any())
         {
             <div class="alert alert-info">
                 No results found
@@ -26,8 +27,8 @@
         }
         else
         {
-            <div class="span12" id="vehicleListContainer" style="margin-top:10px;">
-                <hr />
+            <div class="span12" id="vehicleListContainer" style="margin-top: 10px;">
+                <hr/>
                 <table class="table">
                     @Html.Partial("_VehicleList", Model.vehicleList)
                 </table>
@@ -36,8 +37,10 @@
             {
                 <script type="text/javascript">
 
+                
                 </script>
-                <div id="morelink"> <a href="#" onclick="loadMore();">More Vehicles</a></div>
+                <div id="morelink"> <a href="#" onclick=" loadMore(); ">More Vehicles</a>
+                </div>
             }
         }
     </div>

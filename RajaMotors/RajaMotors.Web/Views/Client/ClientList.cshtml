@@ -19,7 +19,7 @@
         <div onclick="CreateClient();">Add Client </div>
     </div>
     <div id="listofClients" style="float:left;" class="span11">
-        @if (Model.clientList.Count() == 0)
+        @if (!Model.clientList.Any())
         {
             <div class="alert alert-info">
                 No results found

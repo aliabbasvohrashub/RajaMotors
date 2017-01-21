@@ -14,6 +14,8 @@ namespace RajaMotors.Web.ViewModels
 
         public IEnumerable<SelectListItem> SortBy { get; set; }
 
+        public int ClientId { get; set; }
+
         public VehiclePageViewModel(string selectedFilter, string selectedSort)
         {
           

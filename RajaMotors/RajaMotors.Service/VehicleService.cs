@@ -17,8 +17,9 @@ namespace RajaMotors.Service
         IEnumerable<Vehicle> GetVehiclessByPage(int currentPage, int noOfRecords, string sortBy, string filterBy, int? clientId);
         IEnumerable<Vehicle> ClientVehicles(int clientId); 
         IEnumerable<Vehicle> SearchVehicles(string modelName);
+        Vehicle AddVehicle(Vehicle vehicle);
         Vehicle Update(Vehicle vehicle);
-        Vehicle Delete(Vehicle vehicle);
+        Vehicle Delete(Vehicle vehicle); 
         void SaveVehicle();
     }
     public class VehicleService : IVehicleService

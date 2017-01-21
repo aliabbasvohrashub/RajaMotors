@@ -29,25 +29,45 @@
         </div>
     </div>
     <!---for modal popup -->
-    <div class="modal" id="createClient" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+<div class="modal" id="createClient" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     style="display: none;" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            ×
+        </button>
+        <h5 id="myModalLabel">
+            Create Client
+        </h5>
+    </div>
+    <div class="modal-body" id="createClient">
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="enableScroll()">
+            Close
+        </button>
+    </div>
+</div>
+
+    <div class="modal" id="createVehicle" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          style="display: none;" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                 ×
             </button>
             <h5 id="myModalLabel">
-                Create Client
+                Create Vehicle
             </h5>
         </div>
-        <div class="modal-body" id="createClient">
+        <div class="modal-body" id="createVehicle">
         </div>
         <div class="modal-footer">
             <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="enableScroll()">
                 Close
             </button>
         </div>
-    </div>
-    <div class="modal" id="creategroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    </div>  
+
+<div class="modal" id="creategroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          style="display: none;" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="enableScroll()">
@@ -118,7 +138,7 @@
         window.location = '/Search/SearchAll/' + goal;
 
     }
-    $(function () {
+    $(function () { 
         $('#follower').niceScroll();
         $('.tab-content').niceScroll();
     });
@@ -153,6 +173,27 @@
             $("#createClient").html(result); 
         });
     }
+
+    function CreateVehicle() {
+        var url = "/Vehicle/Create";
+
+        $.ajax({
+            url: url,
+            type: "get",
+            data: {
+                customerId: $("#cid").val()
+                  },
+            success: function (result) {
+                $("#createVehicle").html(result);
+            },
+            error: function (xhr) {
+                //Do Something to handle error
+            }
+        });
+
+
+    } 
+
     function DeleteUser(userId, groupId) {
 
 

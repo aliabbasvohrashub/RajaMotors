@@ -52,20 +52,51 @@ namespace RajaMotors.Web.Controllers
 
         public ActionResult VehicleList(int? clientId, string filterBy, int page = 0, string sortBy = "Name")
         { 
+            filterBy = filterBy.Trim(new Char[] { '\'', '*', '.' });
             IEnumerable<Vehicle> vehicles = vehicleService.GetVehiclessByPage(page, 5, sortBy, filterBy, clientId);
             Mapper.Initialize(x => x.CreateMap<Vehicle, VehicleViewModel>());
 
             IEnumerable<VehicleViewModel> vehiclesvm = Mapper.Map<IEnumerable<Vehicle>, IEnumerable<VehicleViewModel>>(vehicles);
-            return View(vehiclesvm);
+
+            VehiclePageViewModel vmVehiclePageViewModel = new VehiclePageViewModel(filterBy, sortBy);
+            vmVehiclePageViewModel.vehicleList = vehiclesvm;
+            vmVehiclePageViewModel.ClientId = vehiclesvm.FirstOrDefault().Client.ClientId;
+            if (Request.IsAjaxRequest())
+            {
+                return Json(vmVehiclePageViewModel, JsonRequestBehavior.AllowGet);
+            }
+            return View(vmVehiclePageViewModel);
+        }
+
+        public ActionResult Create(int customerId)
+        {
+            VehicleViewModel vehiclevm = new VehicleViewModel();
+            vehiclevm.ClientId = customerId;
+            return View(vehiclevm);
+        }
+
+        [HttpPost]
+        public ActionResult Create(VehicleViewModel vmVehicleViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                Client cl = clientService.GetClientById(vmVehicleViewModel.ClientId);
+
+                Mapper.Initialize(x => x.CreateMap<VehicleViewModel, Vehicle>());
+                Vehicle vehicle = Mapper.Map<VehicleViewModel, Vehicle>(vmVehicleViewModel);
+                vehicle.Client = cl;
+                vehicleService.AddVehicle(vehicle);
+            }
+            return RedirectToAction("VehicleList", new {clientId = vmVehicleViewModel.ClientId, filterBy = "''"});
         }
 
         public ActionResult Details(int clientId)
-        { 
+        {
             IEnumerable<Vehicle> vehicle = vehicleService.ClientVehicles(clientId);
-            Mapper.Initialize(v => v.CreateMap<Vehicle, VehicleViewModel>()); 
+            Mapper.Initialize(v => v.CreateMap<Vehicle, VehicleViewModel>());
 
             IEnumerable<VehicleViewModel> vehiclevm = Mapper.Map<IEnumerable<Vehicle>, IEnumerable<VehicleViewModel>>(vehicle);
-            return View("Index",vehiclevm); 
+            return View("Index", vehiclevm);
         }
     }
 }
