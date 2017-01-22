@@ -21,6 +21,7 @@ namespace RajaMotors.Service
         RajaMotors.Model.Models.Service Delete(RajaMotors.Model.Models.Service service);
 
         RajaMotors.Model.Models.Service Add(RajaMotors.Model.Models.Service service);
+        int serviceCount(int vehicleId);
         void SaveService();
     }
 
@@ -78,6 +79,11 @@ namespace RajaMotors.Service
             serviceRepository.Update(service);
             SaveService();
             return service;
+        }
+
+        public int serviceCount(int vehicleId)
+        {
+            return serviceRepository.GetMany(x => x.Vehicle.VehicleId == vehicleId).Count();
         }
 
         public void SaveService()

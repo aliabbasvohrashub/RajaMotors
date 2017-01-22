@@ -42,14 +42,7 @@
                                 </td>
                                 <td>
                                     <a href="/Service/ServiceList?clientId=@item.ClientId&vehicleId=@item.VehicleId&filterBy=''&page=0&sortBy='Name''">
-                                        @if (@item.Services != null)
-                                        {
-                                            @item.Services.Count()
-                                        }
-                                        else
-                                        {
-                                            @("0")
-                                        }
+                                        @item.serviceCount
                                     </a>    
                                 </td>
                                 <td>

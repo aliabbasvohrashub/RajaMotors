@@ -21,6 +21,8 @@ namespace RajaMotors.Web.ViewModels
         [Required(ErrorMessage = "*")] 
         public int ClientId { get; set; }
         public virtual Client Client { get; set; }
+
+        public int serviceCount { get; set; }
         public virtual IEnumerable<RajaMotors.Model.Models.Service> Services { get; set; } 
         public VehicleViewModel()
         {

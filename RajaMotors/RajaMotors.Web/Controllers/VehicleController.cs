@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
+using RajaMotors.Data.Repository;
 using RajaMotors.Web.ViewModels;
 
 namespace RajaMotors.Web.Controllers
@@ -57,6 +58,11 @@ namespace RajaMotors.Web.Controllers
             Mapper.Initialize(x => x.CreateMap<Vehicle, VehicleViewModel>());
 
             IEnumerable<VehicleViewModel> vehiclesvm = Mapper.Map<IEnumerable<Vehicle>, IEnumerable<VehicleViewModel>>(vehicles);
+
+            foreach (var item in vehiclesvm)
+            {
+                item.serviceCount = serviceService.serviceCount(item.VehicleId);
+            }
 
             VehiclePageViewModel vmVehiclePageViewModel = new VehiclePageViewModel(filterBy, sortBy);
             vmVehiclePageViewModel.vehicleList = vehiclesvm;
