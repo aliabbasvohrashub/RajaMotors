@@ -56,6 +56,17 @@
                 </tr> 
                 <tr>
                     <td>
+                        @Html.HiddenFor(model => model.ClientId) 
+                        @Html.HiddenFor(model => model.Client.ClientId)
+                        @Html.HiddenFor(model => model.Client.ClientMobile)
+                        @Html.HiddenFor(model => model.Client.ClientAddress)
+                        @Html.HiddenFor(model => model.Client.ClientAddress1)
+                        @Html.HiddenFor(model => model.Client.ClientAddress2)
+                        @Html.HiddenFor(model => model.Client.ClientAddress3)
+                        @Html.HiddenFor(model => model.Client.ClientDateAdded)
+                        @Html.HiddenFor(model => model.Client.ClientDateModified)
+                        @Html.HiddenFor(model => model.Client.ClientIsActive)
+
                         @Html.Hidden("UserId", User.Identity.GetUserId())
                     </td>
                 </tr>

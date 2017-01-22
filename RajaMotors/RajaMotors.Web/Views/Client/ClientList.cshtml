@@ -15,8 +15,7 @@
         @Html.TextBox("filterby", Model.FilterBy, new { @onblur = "ListOfClients();" })
     </div>
     <div class="span1 pull-right">
-        <a data-toggle="modal" href="#createClient" onclick="CreateClient();"> Create  </a>
-        <div onclick="CreateClient();">Add Client </div>
+        <a data-toggle="modal" href="#createClient" onclick="CreateClient();"> Add Client  </a> 
     </div>
     <div id="listofClients" style="float:left;" class="span11">
         @if (!Model.clientList.Any())

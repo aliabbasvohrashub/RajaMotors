@@ -1,27 +1,26 @@
 ﻿@using Microsoft.AspNet.Identity
 @model IEnumerable<RajaMotors.Web.ViewModels.VehicleViewModel>
 @{
-    ViewBag.Title = "List of Vehicles"; 
+    ViewBag.Title = "List of Vehicles";
 }
-<h2>Vehicles</h2>
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="col_w620_content">
             <fieldset>
-                <legend>Vehicle List</legend>
                 <table class="table">
                     <thead>
                         <tr>
                             <th>VehicleName</th>
+                            <th>ClientName</th>
+                            <th>ClientMobile</th>
                             <th>ModelName</th>
                             <th>ModelNumber</th>
-                            <th>ClientName</th>
-                            <th>ClientMobile</th>                            
+                            <th>Services</th>
                             <th>DateAdded</th>
-                            <th>DateModified</th>                             
                             <th>Active</th>
+                            <th></th>
                         </tr>
-                    </thead> 
+                    </thead>
                     <tbody>
                         @foreach (var item in Model)
             {
@@ -42,13 +41,27 @@
                                     @item.VehicleModelNumber
                                 </td>
                                 <td>
+                                    <a href="/Service/ServiceList?vehicleId=@item.VehicleId&filterBy=''&page=0&sortBy='Name''">
+                                        @if (@item.Services != null)
+                                        {
+                                            @item.Services.Count()
+                                        }
+                                        else
+                                        {
+                                            @("0")
+                                        }
+                                    </a>    
+                                </td>
+                                <td>
                                     @item.VehicletDateAdded
                                 </td>
                                 <td>
-                                    @item.VehicletDateModified
+                                    @item.VehicleIsActive
                                 </td>
                                 <td>
-                                    @item.VehicleIsActive
+                                    @Html.ActionLink("Edit", "Edit", "Vehicle", new { vehicleId = item.VehicleId }, new { @class = "btn btn-primary btn-small" })
+                                    @Html.ActionLink("Detail", "Detail", "Vehicle", new { vehicleId = item.VehicleId }, new { @class = "btn btn-primary btn-small" })
+                                    @Html.ActionLink("Delete", "Delete", "Vehicle", new { vehicleId = item.VehicleId }, new { @class = "btn btn-primary btn-small" })
                                 </td>
                             </tr>
                         }

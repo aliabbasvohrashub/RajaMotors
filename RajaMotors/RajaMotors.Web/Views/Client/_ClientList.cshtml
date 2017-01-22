@@ -47,8 +47,8 @@
                     @if (item.Vehicles != null)
                     {
                         <a href="/Vehicle/VehicleList?clientId=@item.ClientId&filterBy=''&page=0&sortBy='Name''">@item.Vehicles.Count()</a>
-                        <a href="/Vehicle/Index?clientId=@item.ClientId&filterBy=''&page=0&sortBy='Name''">@item.Vehicles.Count()</a>
-                        <a href="/Vehicle/Index?clientId=@item.ClientId">@item.Vehicles.Count()</a>
+                        @*<a href="/Vehicle/Index?clientId=@item.ClientId&filterBy=''&page=0&sortBy='Name''">@item.Vehicles.Count()</a>
+                        <a href="/Vehicle/Index?clientId=@item.ClientId">@item.Vehicles.Count()</a>*@
                     }
                     else
                     {
