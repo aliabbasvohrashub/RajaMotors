@@ -9,7 +9,8 @@ namespace RajaMotors.Model.Models
         public DateTime ServiceDate { get; set; } 
         public DateTime ServiceDueDate { get; set; }
         public DateTime ServiceDateAdded { get; set; }
-        public DateTime? ServiceDateModified { get; set; } 
+        public DateTime? ServiceDateModified { get; set; }
+        public int VehicleId { get; set; }
         public virtual Vehicle Vehicle { get; set; } 
         public bool ServiceIsActive { get; set; }
         public Service()

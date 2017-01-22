@@ -41,7 +41,7 @@
                                     @item.VehicleModelNumber
                                 </td>
                                 <td>
-                                    <a href="/Service/ServiceList?vehicleId=@item.VehicleId&filterBy=''&page=0&sortBy='Name''">
+                                    <a href="/Service/ServiceList?clientId=@item.ClientId&vehicleId=@item.VehicleId&filterBy=''&page=0&sortBy='Name''">
                                         @if (@item.Services != null)
                                         {
                                             @item.Services.Count()
@@ -59,9 +59,9 @@
                                     @item.VehicleIsActive
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Edit", "Edit", "Vehicle", new { vehicleId = item.VehicleId }, new { @class = "btn btn-primary btn-small" })
-                                    @Html.ActionLink("Detail", "Detail", "Vehicle", new { vehicleId = item.VehicleId }, new { @class = "btn btn-primary btn-small" })
-                                    @Html.ActionLink("Delete", "Delete", "Vehicle", new { vehicleId = item.VehicleId }, new { @class = "btn btn-primary btn-small" })
+                                    @Html.ActionLink("Edit", "Edit", "Vehicle",     new { clientId = item.ClientId, vehicleId = item.VehicleId }, new { @class = "btn btn-primary btn-small" })
+                                    @Html.ActionLink("Detail", "Detail", "Vehicle", new { clientId = item.ClientId, vehicleId = item.VehicleId }, new { @class = "btn btn-primary btn-small" })
+                                    @Html.ActionLink("Delete", "Delete", "Vehicle", new { clientId = item.ClientId, vehicleId = item.VehicleId }, new { @class = "btn btn-primary btn-small" })
                                 </td>
                             </tr>
                         }

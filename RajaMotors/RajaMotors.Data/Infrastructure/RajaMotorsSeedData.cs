@@ -34,7 +34,7 @@ namespace RajaMotors.Data.Infrastructure
             service.ServiceDateAdded = System.DateTime.Now;
             service.ServiceDueDate = System.DateTime.Now.AddDays(10);
             service.Vehicle= vehicle;
-
+            service.VehicleId = vehicle.VehicleId; 
             context.Services.Add(service);
 
             cl.Vehicles.Add(vehicle);

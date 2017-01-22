@@ -15,6 +15,8 @@ namespace RajaMotors.Service
         RajaMotors.Model.Models.Service GetServiceById(long Id);
         IEnumerable<RajaMotors.Model.Models.Service> GetService(IEnumerable<int> serviceIds);
         IEnumerable<RajaMotors.Model.Models.Service> SearchService(String serviceName);
+        IEnumerable<RajaMotors.Model.Models.Service> GetServiceByPage(int clientId, int vehicleId, int currentPage, int noOfRecords, string sortBy, string filterBy);
+
         RajaMotors.Model.Models.Service Update(RajaMotors.Model.Models.Service service);
         RajaMotors.Model.Models.Service Delete(RajaMotors.Model.Models.Service service);
 
@@ -22,7 +24,7 @@ namespace RajaMotors.Service
         void SaveService();
     }
 
-    public class ServiceService : IServiceService
+    public class ServiceService : IServiceService  
     {
         private readonly IClientRepository clientRepository;
         private readonly IVehicleRepository vehicleRepository;
@@ -52,8 +54,7 @@ namespace RajaMotors.Service
             }
             return services;
 
-        }
-
+        } 
         public Model.Models.Service GetServiceById(long Id)
         {
             var service = serviceRepository.GetById(Id);
@@ -64,6 +65,12 @@ namespace RajaMotors.Service
         {
             var services = serviceRepository.GetAll();
             return services;
+        }
+
+        public IEnumerable<Model.Models.Service> GetServiceByPage(int clientId, int vehicleId, int currentPage, int noOfRecords, string sortBy,
+            string filterBy)
+        {
+            return serviceRepository.GetSericeByPage(clientId, vehicleId, currentPage, noOfRecords, sortBy, filterBy);
         }
 
         public Model.Models.Service Update(Model.Models.Service service)

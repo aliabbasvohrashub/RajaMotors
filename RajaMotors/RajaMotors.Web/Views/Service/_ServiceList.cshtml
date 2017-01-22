@@ -1,0 +1,54 @@
+﻿@using Microsoft.AspNet.Identity
+@model IEnumerable<RajaMotors.Web.ViewModels.ServiceViewModel>
+@{
+    ViewBag.Title = "List of Vehicles";
+}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="col_w620_content">
+            <fieldset>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>VehicleName</th>
+                            <th>ModelNumber</th>
+                            <th>ServiceDate</th>
+                            <th>DateAdded</th>
+                            <th>Active</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @item.Vehicle.VehicleModelName
+                                </td>
+                                <td>
+                                    @item.Vehicle.VehicleModelNumber
+                                </td>
+                                <td>
+                                    @item.ServiceDueDate
+                                </td>
+                                <td>
+                                    @item.ServiceDateAdded
+                                </td>
+                                <td>
+                                    @item.ServiceIsActive
+                                </td>
+                                <td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", "Vehicle", new {clientId = item.Vehicle.Client.ClientId, vehicleId = item.Vehicle.VehicleId}, new {@class = "btn btn-primary btn-small"})
+                                    @Html.ActionLink("Detail", "Detail", "Vehicle", new {clientId = item.Vehicle.Client.ClientId, vehicleId = item.Vehicle.VehicleId}, new {@class = "btn btn-primary btn-small"})
+                                    @Html.ActionLink("Delete", "Delete", "Vehicle", new {clientId = item.Vehicle.Client.ClientId, vehicleId = item.Vehicle.VehicleId}, new {@class = "btn btn-primary btn-small"})
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </fieldset>
+        </div>
+    </div>
+</div>
