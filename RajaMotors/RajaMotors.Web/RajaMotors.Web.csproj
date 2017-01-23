@@ -536,6 +536,7 @@
     <Content Include="Views\Vehicle\Create.cshtml" />
     <Content Include="Views\Service\ServiceList.cshtml" />
     <Content Include="Views\Service\_ServiceList.cshtml" />
+    <Content Include="Views\Service\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

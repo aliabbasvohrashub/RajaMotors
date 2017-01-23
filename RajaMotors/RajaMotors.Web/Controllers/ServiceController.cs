@@ -62,5 +62,23 @@ namespace RajaMotors.Web.Controllers
             }
             return View(vmServicePageViewModel);
         }
+
+
+        public ActionResult Edit(int serviceId)
+        {
+            RajaMotors.Model.Models.Service service = serviceService.GetServiceById(serviceId);
+            Mapper.Initialize(x => x.CreateMap<RajaMotors.Model.Models.Service, ServiceViewModel>());
+            ServiceViewModel servicevm = Mapper.Map<RajaMotors.Model.Models.Service, ServiceViewModel>(service); 
+            return View(servicevm);
+        }  
+
+        [HttpPost]
+        public ActionResult Edit(ServiceViewModel servicevm)
+        {     
+            Mapper.Initialize(x => x.CreateMap<ServiceViewModel, RajaMotors.Model.Models.Service>());
+            RajaMotors.Model.Models.Service service = Mapper.Map<ServiceViewModel, RajaMotors.Model.Models.Service>(servicevm); 
+            serviceService.Update(service);
+            return RedirectToAction("ServiceList", new { vehicleId = servicevm.Vehicle.VehicleId, filterBy = "''" });
+        }
     }
 }

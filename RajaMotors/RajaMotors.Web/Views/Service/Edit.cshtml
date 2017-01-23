@@ -1,0 +1,126 @@
+﻿@using Microsoft.AspNet.Identity
+@model RajaMotors.Web.ViewModels.ServiceViewModel
+<div class="span12 well">
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <h4>Edit @Html.DisplayFor(model => model.ServiceId)</h4>
+            @Html.HiddenFor(model => model.ServiceId)
+            <table class="table">
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Vehicle.VehicleId, "VehicleId")
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model => model.Vehicle.VehicleId, new {  @class = "span11" })
+                        @Html.ValidationMessageFor(model => model.Vehicle.VehicleId)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Vehicle.VehicleModelName, "VehicleModelName")
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model => model.Vehicle.VehicleModelName, new { @class = "span11" })
+                        @Html.ValidationMessageFor(model => model.Vehicle.VehicleModelName)
+                    </td>
+                </tr> 
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.Vehicle.VehicleModelNumber, "VehicleModelNumber")
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model => model.Vehicle.VehicleModelNumber, new { @class = "span11" })
+                        @Html.ValidationMessageFor(model => model.Vehicle.VehicleModelNumber)
+                    </td>
+                </tr> 
+                <tr> 
+                    <td>
+                        @Html.LabelFor(model => model.ServiceId, "ServiceId")
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model => model.ServiceId, new { @class = "span11" })
+                        @Html.ValidationMessageFor(model => model.ServiceId)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.ServiceDate, "ServiceDate")
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model => model.ServiceDate, new { @class = "span11" })
+                        @Html.ValidationMessageFor(model => model.ServiceDate)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.ServiceDueDate, "ServiceDueDate")
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model => model.ServiceDueDate, new { @class = "span11" })
+                        @Html.ValidationMessageFor(model => model.ServiceDueDate)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.ServiceDateAdded, "VehicleIsActive")
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model => model.ServiceDateAdded, new { @class = "span11" })
+                        @Html.ValidationMessageFor(model => model.ServiceDateAdded)
+                    </td>
+                </tr> 
+                <tr>
+                    <td>
+                        @Html.LabelFor(model => model.ServiceDateModified, "Date")
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(model => model.ServiceDateModified, String.Format("{0:dd-MMM-yyyy}", Model.ServiceDateModified), new { @class = "ui-datepicker span11"})
+                        @Html.ValidationMessageFor(model => model.ServiceDateModified)
+                    </td>
+                </tr> 
+                <tr>
+                    <td>
+                        @*@Html.HiddenFor(model => model.ClientId) 
+                        @Html.HiddenFor(model => model.Client.ClientId)
+                        @Html.HiddenFor(model => model.Client.ClientMobile)
+                        @Html.HiddenFor(model => model.Client.ClientAddress)
+                        @Html.HiddenFor(model => model.Client.ClientAddress1)
+                        @Html.HiddenFor(model => model.Client.ClientAddress2)
+                        @Html.HiddenFor(model => model.Client.ClientAddress3)
+                        @Html.HiddenFor(model => model.Client.ClientDateAdded)
+                        @Html.HiddenFor(model => model.Client.ClientDateModified)
+                        @Html.HiddenFor(model => model.Client.ClientIsActive)*@
+
+                        @Html.Hidden("UserId", User.Identity.GetUserId())
+                    </td>
+                </tr>
+            </table>
+            <button class="btn btn-primary" type="submit" value="Save" onclick="editSave(@Model.ServiceId)">
+                Save
+            </button>
+            <button class="btn" type="reset" value="Cancel" onclick="window.location.href='@Url.Action("Index", "Client")'">
+                Cancel
+            </button>
+        </fieldset>
+
+        <div id="divEdit@(Model.ServiceId)">
+        </div>
+    }
+</div>
+ 
+<script type="text/javascript">  
+    $(document).ready(function () {
+        $('.ui-datepicker').each(function (i, v) {
+            $(".ui - datepicker").val(" ");
+            $(v).datepicker({
+                dateFormat: 'dd-M-yy',
+                buttonImage: '@Url.Content("~/Content/calendar.gif")',
+                buttonImageOnly: true,
+                showOn: "button"
+            });
+        });
+    });
+</script>

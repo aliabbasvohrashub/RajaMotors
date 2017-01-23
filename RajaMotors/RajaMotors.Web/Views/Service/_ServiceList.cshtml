@@ -39,9 +39,9 @@
                                 </td>
                                 <td>
                                 <td>
-                                    @Html.ActionLink("Edit", "Edit", "Vehicle", new {clientId = item.Vehicle.Client.ClientId, vehicleId = item.Vehicle.VehicleId}, new {@class = "btn btn-primary btn-small"})
-                                    @Html.ActionLink("Detail", "Detail", "Vehicle", new {clientId = item.Vehicle.Client.ClientId, vehicleId = item.Vehicle.VehicleId}, new {@class = "btn btn-primary btn-small"})
-                                    @Html.ActionLink("Delete", "Delete", "Vehicle", new {clientId = item.Vehicle.Client.ClientId, vehicleId = item.Vehicle.VehicleId}, new {@class = "btn btn-primary btn-small"})
+                                    @Html.ActionLink("Edit", "Edit", "Service", new {serviceId = item.ServiceId}, new {@class = "btn btn-primary btn-small"})
+                                    @Html.ActionLink("Detail", "Detail", "Service", new {serviceId = item.ServiceId }, new {@class = "btn btn-primary btn-small"})
+                                    @Html.ActionLink("Delete", "Delete", "Service", new {serviceId = item.ServiceId }, new {@class = "btn btn-primary btn-small"})
                                 </td>
                             </tr>
                         }
