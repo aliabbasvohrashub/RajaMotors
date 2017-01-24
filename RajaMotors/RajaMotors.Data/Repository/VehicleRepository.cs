@@ -16,12 +16,32 @@ namespace RajaMotors.Data.Repository
 
         public IEnumerable<Vehicle> GetClientVehicles(int clientId)
         {
-            var vehicles = this.GetMany(x => x.ClientId == clientId && x.VehicleIsActive == true);
+            var vehicle = this.GetAll().GroupBy(x => x.Client);
+            var vehicles = this.GetMany(x => x.ClientId == clientId && x.VehicleIsActive == true && x.services.Count() == 0);
             return vehicles;
         }
 
         public IEnumerable<Vehicle> GetVehiclessByPage(int currentPage, int noOfRecords, string sortBy, string filterBy, int? clientId)
         {
+
+            var xx = this.GetMany(x => x .VehicleId == x.services.Where(xxx => xxx.ServiceId == 1).FirstOrDefault().VehicleId);
+            var v = this
+                .GetAll()
+                .GroupBy(x => x.ClientId)
+                .Select(x=> new
+                {
+                    k = x.Key,
+                    v = x.Count()
+                });
+
+            var vv = this
+                .GetAll()
+                .GroupBy(x => x.services.FirstOrDefault())
+                .Select(x => new
+                {
+                    k = x.Key,
+                    v = x.Count()
+                });
             var skipGoals = noOfRecords * currentPage;
             var vehicles = this.GetMany(x => x.VehicleIsActive == true);
 
@@ -44,11 +64,26 @@ namespace RajaMotors.Data.Repository
             vehicles = vehicles.Skip(skipGoals).Take(noOfRecords);
             return vehicles.ToList();
         }
+
+        public IEnumerable<Vehicle> Vehicle_ServiceAnalysis(int? clientId)
+        {
+            //DataContext.Services.Where(x=>x.VehicleId == )
+            //IEnumerable<Service> services = this.GetMany(x => x.VehicleId == clientId);
+            IEnumerable<Vehicle> vehicles = this.GetMany(x => x.Client.ClientId == clientId);
+
+            foreach (var vehicle in vehicles)
+            {
+                var xxx = DataContext.Services.Where(x => x.VehicleId == vehicle.VehicleId);
+            }
+           
+            return vehicles; 
+        }
     }
 
     public interface IVehicleRepository : IRepository<Vehicle>
     {
         IEnumerable<Vehicle> GetClientVehicles(int clientId);
         IEnumerable<Vehicle> GetVehiclessByPage(int currentPage, int noOfRecords, string sortBy, string filterBy, int? clientId);
+        IEnumerable<Vehicle> Vehicle_ServiceAnalysis(int? clientId);
     }
 }

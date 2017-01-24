@@ -14,6 +14,7 @@ namespace RajaMotors.Model.Models
 
         public int ClientId{ get; set; }
         public virtual Client Client {get;set;}
+        public virtual ICollection<Service> services { get; set;}
         public Vehicle()
         {
             VehicletDateAdded = System.DateTime.Now;

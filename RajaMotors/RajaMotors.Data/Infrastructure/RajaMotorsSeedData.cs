@@ -27,7 +27,7 @@ namespace RajaMotors.Data.Infrastructure
             vehicle.Client = cl;
             vehicle.VehicletDateAdded = System.DateTime.Now;
             vehicle.ClientId = cl.ClientId;
-            context.Vehicles.Add(vehicle);
+           
 
             Service service = new Service();
             service.ServiceDate = System.DateTime.Now;
@@ -35,11 +35,15 @@ namespace RajaMotors.Data.Infrastructure
             service.ServiceDueDate = System.DateTime.Now.AddDays(10);
             service.Vehicle= vehicle;
             service.VehicleId = vehicle.VehicleId; 
+            
+            cl.Vehicles.Add(vehicle);
+            vehicle.services.Add(service);
+
+            
+            context.Clients.Add(cl);
+            context.Vehicles.Add(vehicle);
             context.Services.Add(service);
 
-            cl.Vehicles.Add(vehicle);
-
-            context.Clients.Add(cl);
             context.Commit();
         }
     }
