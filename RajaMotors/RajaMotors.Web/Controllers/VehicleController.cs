@@ -30,7 +30,7 @@ namespace RajaMotors.Web.Controllers
         }
 
 
-        public ActionResult IndexOld(int? clientId)
+        public ActionResult Index(int? clientId)
         {
             if (clientId == null)
             {

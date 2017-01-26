@@ -27,15 +27,18 @@ namespace RajaMotors.Data.Infrastructure
             vehicle.Client = cl;
             vehicle.VehicletDateAdded = System.DateTime.Now;
             vehicle.ClientId = cl.ClientId;
-           
 
-            Service service = new Service();
-            service.ServiceDate = System.DateTime.Now;
-            service.ServiceDateAdded = System.DateTime.Now;
-            service.ServiceDueDate = System.DateTime.Now.AddDays(10);
-            service.Vehicle= vehicle;
-            service.VehicleId = vehicle.VehicleId; 
-            
+
+            Service service = new Service
+            {
+                ServiceDate = System.DateTime.Now,
+                ServiceDateAdded = System.DateTime.Now,
+                ServiceDueDate = System.DateTime.Now.AddDays(10),
+                Vehicle = vehicle,
+                VehicleId = vehicle.VehicleId
+            };
+
+
             cl.Vehicles.Add(vehicle);
             vehicle.services.Add(service);
 
