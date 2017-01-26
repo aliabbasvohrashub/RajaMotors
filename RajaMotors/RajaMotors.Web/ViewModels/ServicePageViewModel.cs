@@ -13,7 +13,9 @@ namespace RajaMotors.Web.ViewModels
         public int ClientId { get; set; }
         public int VehicleId { get; set; }
         public virtual Vehicle Vehicle { get; set; }
-        public string FilterBy { get; set; } 
+        public string FilterBy { get; set; }
+
+        public IEnumerable<VehicleViewModel> ListVehiclesServiceDue { get; set; }
         public IEnumerable<SelectListItem> SortBy { get; set; }
 
         public ServicePageViewModel(string selectedFilter, string selectedSort)

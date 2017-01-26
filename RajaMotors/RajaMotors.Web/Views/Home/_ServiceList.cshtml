@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
-@model IEnumerable<RajaMotors.Web.ViewModels.VehicleViewModel>
+@model IEnumerable<RajaMotors.Web.ViewModels.ServiceViewModel>
 @{
     ViewBag.Title = "List of Vehicles";
 }
@@ -18,39 +18,38 @@
                             <th>Services</th>
                             <th>DateAdded</th>
                             <th>Active</th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
-            {
+                        {
                             <tr>
                                 <td>
-                                    @item.VehicleModelName
+                                    @item.Vehicle.VehicleModelName
                                 </td>
                                 <td>
-                                    @item.Client.ClientName
+                                    @item.Vehicle.Client.ClientName
                                 </td>
                                 <td>
-                                    @item.Client.ClientMobile
+                                    @item.Vehicle.Client.ClientMobile
                                 </td>
                                 <td>
-                                    @item.VehicleModelName
+                                    @item.Vehicle.VehicleModelName
                                 </td>
                                 <td>
-                                    @item.VehicleModelNumber
+                                    @item.Vehicle.VehicleModelNumber
                                 </td>
                                 <td>
-                                    <a href="/Service/ServiceList?clientId=@item.ClientId&vehicleId=@item.VehicleId&filterBy=''&page=0&sortBy='Name''">
-                                        @item.serviceCount
-                                    </a>    
+                                    <a href="/Service/ServiceList?clientId=@item.Vehicle.ClientId&vehicleId=@item.Vehicle.VehicleId&filterBy=''&page=0&sortBy='Name''">
+                                        @item.Vehicle.services.Count()
+                                    </a>
                                 </td>
                                 <td>
-                                    @item.VehicletDateAdded
+                                    @item.Vehicle.VehicletDateAdded
                                 </td>
                                 <td>
-                                    @item.VehicleIsActive
-                                </td> 
+                                    @item.Vehicle.VehicleIsActive
+                                </td>  
                             </tr>
                         }
                     </tbody>

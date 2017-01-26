@@ -15,7 +15,10 @@ namespace RajaMotors.Service
         Vehicle GetVehicleById(long Id);
         IEnumerable<Vehicle> GetVehicles(IEnumerable<int> vehicleIds); 
         IEnumerable<Vehicle> GetVehiclessByPage(int currentPage, int noOfRecords, string sortBy, string filterBy, int? clientId);
-        IEnumerable<Vehicle> ClientVehicles(int clientId); 
+        IEnumerable<Vehicle> ClientVehicles(int clientId);
+
+        IEnumerable<Vehicle> GetVehiclesWithoutAnyService();
+        
         IEnumerable<Vehicle> SearchVehicles(string modelName);
         Vehicle AddVehicle(Vehicle vehicle);
         Vehicle Update(Vehicle vehicle);
@@ -84,6 +87,11 @@ namespace RajaMotors.Service
         public void SaveVehicle()
         {
             unitOfWork.Commit();
+        }
+
+        public IEnumerable<Vehicle> GetVehiclesWithoutAnyService()
+        {
+            return vehicleRepository.GetVehiclesWithoutAnyService();
         }
 
         public IEnumerable<Vehicle> SearchVehicles(string modelName)

@@ -34,7 +34,19 @@ namespace RajaMotors.Web.Controllers
              
             IEnumerable<ServiceViewModel> vmallDueServices =
                 Mapper.Map<IEnumerable<RajaMotors.Model.Models.Service>, IEnumerable<ServiceViewModel>>(allDueServices);
-            return View(vmallDueServices);
+
+            IEnumerable<Vehicle> newVehicles = vehicleService.GetVehiclesWithoutAnyService();
+            Mapper.Initialize(x => x.CreateMap<Vehicle, VehicleViewModel>());
+
+            IEnumerable<VehicleViewModel> newVehiclesvm =
+                Mapper.Map<IEnumerable<Vehicle>, IEnumerable<VehicleViewModel>>(newVehicles);
+
+            ServicePageViewModel spvm = new ServicePageViewModel("","Name");
+
+            spvm.serviceList = vmallDueServices;
+            spvm.ListVehiclesServiceDue = newVehiclesvm;
+
+            return View(spvm);
         }
         
         public ActionResult About()
