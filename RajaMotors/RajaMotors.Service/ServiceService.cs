@@ -19,7 +19,7 @@ namespace RajaMotors.Service
 
         RajaMotors.Model.Models.Service Update(RajaMotors.Model.Models.Service service);
         RajaMotors.Model.Models.Service Delete(RajaMotors.Model.Models.Service service);
-
+        IEnumerable<Model.Models.Service> GetAllDueServices();
         RajaMotors.Model.Models.Service Add(RajaMotors.Model.Models.Service service);
         int serviceCount(int vehicleId);
         void SaveService();
@@ -45,7 +45,11 @@ namespace RajaMotors.Service
             SaveService();
             return service;
         }
-
+        public IEnumerable<Model.Models.Service> GetAllDueServices()
+        {
+            var services = serviceRepository.AllServicesDue();
+            return services;
+        }
         public IEnumerable<Model.Models.Service> GetService(IEnumerable<int> serviceIds)
         {
             List<Model.Models.Service> services = new List<Model.Models.Service>();

@@ -1,23 +1,59 @@
-﻿@{
+﻿@model IEnumerable<RajaMotors.Web.ViewModels.ServiceViewModel>
+
+@{
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_HomeLayoutRajaMotors.cshtml";
 }
-
 <div class="container-fluid">
-    <div class="jumbotron">
-        <h1>ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-    </div>
-
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p> 
-        </div> 
+    <div class="row-fluid">
+        <div class="col_w620_content">
+            <fieldset>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>VehicleName</th>
+                            <th>ClientName</th>
+                            <th>ClientMobile</th>
+                            <th>ModelName</th>
+                            <th>ModelNumber</th>
+                            <th>DateAdded</th>
+                            <th>Active</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                         {
+                            <tr>
+                                <td>
+                                    @item.ServiceId
+                                </td>
+                                <td>
+                                    @item.Vehicle.Client.ClientName
+                                </td>
+                                <td>
+                                    @item.Vehicle.Client.ClientMobile
+                                </td>
+                                <td>
+                                    @item.Vehicle.VehicleModelName
+                                </td>
+                                <td>
+                                    @item.Vehicle.VehicleModelNumber
+                                </td>
+                                <td>
+                                    @item.Vehicle.VehicletDateAdded
+                                </td>
+                                <td>
+                                    @item.Vehicle.VehicleIsActive
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <section id="login">
+                     
+                </section>
+            </fieldset>
+        </div>
     </div>
 </div>
+

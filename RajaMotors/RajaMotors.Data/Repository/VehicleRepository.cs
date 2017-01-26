@@ -16,6 +16,10 @@ namespace RajaMotors.Data.Repository
 
         public IEnumerable<Vehicle> GetClientVehicles(int clientId)
         {
+            var vehiclesPendingService = this.GetAll()
+                .Where(x => x.VehicletDateAdded > System.DateTime.Now.AddDays(-90)
+                    && !x.services.Any());
+
             var vehicle = this.GetAll().GroupBy(x => x.Client);
             var vehicles = this.GetMany(x => x.ClientId == clientId && x.VehicleIsActive == true && x.services.Count() == 0);
             return vehicles;
@@ -78,6 +82,12 @@ namespace RajaMotors.Data.Repository
            
             return vehicles; 
         }
+
+        public IEnumerable<Vehicle> GetVehiclesWithoutAnyService()
+        {
+            var vehicles = GetAll().Where(x => x.VehicletDateAdded < System.DateTime.Now.AddDays(-90) && !x.services.Any());
+            return vehicles;
+        }
     }
 
     public interface IVehicleRepository : IRepository<Vehicle>
@@ -85,5 +95,7 @@ namespace RajaMotors.Data.Repository
         IEnumerable<Vehicle> GetClientVehicles(int clientId);
         IEnumerable<Vehicle> GetVehiclessByPage(int currentPage, int noOfRecords, string sortBy, string filterBy, int? clientId);
         IEnumerable<Vehicle> Vehicle_ServiceAnalysis(int? clientId);
+
+        IEnumerable<Vehicle> GetVehiclesWithoutAnyService();
     }
 }
