@@ -17,10 +17,12 @@ namespace RajaMotors.Data.Repository
 
         public IEnumerable<Service> GetSericeByPage(int clientId, int vehicleId, int currentPage, int noOfRecords,
             string sortBy, string filterBy)
-        { 
+        {
             var skipGoals = noOfRecords * currentPage;
 
-            var services = this.GetMany(s => s.ServiceIsActive == true).Where(s => s.Vehicle.ClientId == clientId && s.Vehicle.VehicleId == vehicleId);
+            var services =
+                this.GetMany(s => s.ServiceIsActive == true)
+                    .Where(s => s.Vehicle.ClientId == clientId && s.Vehicle.VehicleId == vehicleId);
 
             if (!string.IsNullOrEmpty(filterBy))
             {
@@ -45,9 +47,12 @@ namespace RajaMotors.Data.Repository
                 {
                     vehicleId = g.Key,
                     lastServiceDate = g.Max(x => x.ServiceDate),
-                    serviceId = g
-                        .Where(x => x.ServiceDate == g.Max(xx => xx.ServiceDate))
-                        .Select(x => x.ServiceId).FirstOrDefault()
+                    serviceId = g.OrderByDescending(x => x.ServiceDate)
+                        .Select(x => x.ServiceId)
+                        .FirstOrDefault()
+                    //,serviceIdold = g
+                    //    .Where(x => x.ServiceDate == g.Max(xx => xx.ServiceDate))
+                    //    .Select(x => x.ServiceId).FirstOrDefault()
                 });
 
             var servicedVehiclesHavingServiceDue =
@@ -65,11 +70,12 @@ namespace RajaMotors.Data.Repository
             return servicedVehiclesHavingServiceDue;
         }
     }
+}
 
-    public interface IServiceRepository : IRepository<Service>
-    {
-        IEnumerable<Service> GetSericeByPage(int clientId, int vehicleId, int currentPage, int noOfRecords, string sortBy, string filterBy);
-        IEnumerable<Service> AllServicesDue();
+public interface IServiceRepository : IRepository<Service>
+{
+    IEnumerable<Service> GetSericeByPage(int clientId, int vehicleId, int currentPage, int noOfRecords, string sortBy, string filterBy);
+    IEnumerable<Service> AllServicesDue();
 
-    }
+}
 }
