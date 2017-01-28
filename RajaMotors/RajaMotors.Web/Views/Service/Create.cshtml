@@ -1,0 +1,59 @@
+﻿@using Microsoft.AspNet.Identity
+@model RajaMotors.Web.ViewModels.ServiceViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "";
+} 
+
+<style type="text/css">
+    .modalInput {
+        margin: 3px 0 3px 0 !important;
+    }
+</style> 
+<div>
+    @using (Html.BeginForm("Create", "Service", FormMethod.Post, new { @id = "serviceForm" }))
+            {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true); 
+        <h3>Add Client</h3>
+        <table class="table">
+            <tr>
+                <td>
+                    @Html.TextBoxFor(model => model.ServiceDate, new { id= "ServiceDate", @class = "ui-datepicker modalInput", @placeholder = "Enter Date" })
+                    @Html.ValidationMessageFor(model => model.ServiceDate)
+                    @Html.HiddenFor(model=>model.VehicleId)
+                </td>
+            </tr> 
+            <tr>
+                <td>
+                    <button id="submitbtn" class="btn btn-primary" value="Submit"> Create</button>&nbsp;&nbsp; 
+                    <button class="btn" type="reset" id="canclebtn" value="Cancel">Cancel</button>
+                </td>
+            </tr>
+            @Html.Hidden("UserId", User.Identity.GetUserId())
+        </table>
+    }
+</div>
+
+
+<script type="text/javascript"> 
+    $(document).ready(function () {  
+        $("#canclebtn").click(function (e) {
+            $('#createService').modal('toggle'); 
+            e.preventDefault();
+        });
+        $('.ui-datepicker').each(function (i, v) {
+            $(v).datepicker({
+                dateFormat: 'dd-M-yy',
+                buttonImage: '@Url.Content("~/Content/calendar.gif")',
+                buttonImageOnly: true,
+                showOn: "button"
+            }); 
+        });
+});
+     
+</script>
+<script src="~/Scripts/jquery-1.7.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

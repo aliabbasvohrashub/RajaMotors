@@ -63,6 +63,33 @@ namespace RajaMotors.Web.Controllers
             return View(vmServicePageViewModel);
         }
 
+        [HttpGet]
+        public ActionResult Create(int vehicleId)
+        {
+            ServiceViewModel vm = new ServiceViewModel
+            {
+                VehicleId = vehicleId
+            };
+            return View(vm);
+        }
+
+        [HttpPost]
+        public ActionResult Create(ServiceViewModel servicemodel)
+        {
+            if (ModelState.IsValid)
+            {
+                Vehicle vehicle = vehicleService.GetVehicleById(servicemodel.VehicleId);
+                if (vehicle != null)
+                {
+                    Mapper.Initialize(x => x.CreateMap<ServiceViewModel, RajaMotors.Model.Models.Service>());
+                    RajaMotors.Model.Models.Service service =
+                        Mapper.Map<ServiceViewModel, RajaMotors.Model.Models.Service>(servicemodel);
+                    service.Vehicle = vehicle;
+                    serviceService.Add(service);
+                }
+            }
+            return RedirectToAction("Index");
+        }
 
         public ActionResult Edit(int serviceId)
         {

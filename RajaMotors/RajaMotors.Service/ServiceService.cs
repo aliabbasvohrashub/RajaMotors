@@ -68,7 +68,7 @@ namespace RajaMotors.Service
 
         public IEnumerable<Model.Models.Service> GetServices()
         {
-            var services = serviceRepository.GetAll();
+            var services = serviceRepository.GetAll().OrderBy(x=>x.Vehicle.VehicleModelName).ThenByDescending(x=>x.ServiceDate);
             return services;
         }
 

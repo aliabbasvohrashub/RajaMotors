@@ -14,11 +14,12 @@
         @Html.TextBox("filterby", Model.FilterBy, new { @onblur = "ListOfServices();" })
     </div>
     <div class="span1 pull-right">
-        <a data-toggle="modal" href="#createService" onclick="CreateService();"> Add Service </a> 
+        <a data-toggle="modal" href="#createService" onclick="CreateService();"> Add Service </a>
     </div>
 
     <div id="listofServices" style="float: left;" class="span11">
         <input type="hidden" id="cid" value="@Model.ClientId"/>
+        <input type="hidden" id="vid" value="@Model.VehicleId" />
         @if (!Model.serviceList.Any())
         {
             <div class="alert alert-info">
@@ -28,7 +29,7 @@
         else
         {
             <div class="span12" id="ServiceListContainer" style="margin-top: 10px;">
-                <hr/>
+                <hr />
                 <table class="table">
                     @Html.Partial("_ServiceList", Model.serviceList)
                 </table>
@@ -37,9 +38,10 @@
             {
                 <script type="text/javascript">
 
-                
+
                 </script>
-                <div id="morelink"> <a href="#" onclick=" loadMore(); ">More Services</a>
+                <div id="morelink">
+                    <a href="#" onclick="loadMore();">More Services</a>
                 </div>
             }
         }
@@ -92,7 +94,7 @@
                         addNoMoreServices();
                     }
                 }
-            }); 
+            });
         }
 
         function addNoMoreServices() {
@@ -125,9 +127,8 @@
                 $('#morelink').show();
             }
             currentServicePage = 0;
-            loadTemplate(result); 
-        }); 
-    } 
+            loadTemplate(result);
+        });
+    }
 
 </script>
- 

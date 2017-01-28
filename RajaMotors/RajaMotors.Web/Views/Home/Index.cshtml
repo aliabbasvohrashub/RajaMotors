@@ -8,10 +8,12 @@
 <div class="container-fluid">
     <div class="row-fluid">
         <div class="col_w620_content">
-            @Html.Partial("_VehicleList",Model.ListVehiclesServiceDue)
+            <h4>Vehicles pending first Service</h4>
+            @Html.Partial("_VehicleList", Model.ListVehiclesServiceDue)
         </div>
 
         <div class="col_w620_content">
+            <h4>Vehicles with next Service due</h4>
             @Html.Partial("_ServiceList", Model.serviceList)
         </div>
     </div>

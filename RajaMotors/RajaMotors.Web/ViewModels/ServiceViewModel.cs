@@ -21,9 +21,18 @@ namespace RajaMotors.Web.ViewModels
 
         public DateTime ServiceDateAdded { get; set; }
         [DisplayFormat(DataFormatString = "{0:dd MMMM yyyy}")]
-        public DateTime? ServiceDateModified { get; set; } 
+        public DateTime? ServiceDateModified { get; set; }
+
+        public int VehicleId { get; set; }
         public virtual Vehicle Vehicle { get; set; }
         public bool ServiceIsActive { get; set; }
+
+        public ServiceViewModel()
+        {
+            ServiceDateAdded = DateTime.Now;
+            ServiceDueDate = DateTime.Now;
+            ServiceDateModified = null;
+        }
 
     }
 }
