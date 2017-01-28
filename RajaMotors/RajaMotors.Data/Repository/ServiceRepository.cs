@@ -71,11 +71,11 @@ namespace RajaMotors.Data.Repository
         }
     }
 }
-
+ 
 public interface IServiceRepository : IRepository<Service>
 {
     IEnumerable<Service> GetSericeByPage(int clientId, int vehicleId, int currentPage, int noOfRecords, string sortBy, string filterBy);
     IEnumerable<Service> AllServicesDue();
 
 }
-}
+ 
