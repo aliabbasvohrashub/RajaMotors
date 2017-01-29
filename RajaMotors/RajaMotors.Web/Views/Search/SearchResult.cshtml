@@ -21,7 +21,7 @@
                     <strong>@Html.ActionLink(item.ClientName, "Index", "Client", new { id = item.ClientId }, null)</strong>
                 </div>
                 <div><small>@item.ClientDateAdded.ToString() - @item.ClientDateModified.ToString()</small></div>
-                <div>
+                <div> 
                     @*<small>Created by @Html.ActionLink(item.User.UserName, "UserProfile", "Account", new {id = item.UserId}, null) on @item.ClientDateAdded.ToString("dd MMM yyyy -   hh:mm tt ")</small>*@
                 </div>
             </div>

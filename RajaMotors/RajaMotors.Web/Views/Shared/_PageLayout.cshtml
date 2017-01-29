@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Social Goal</title>
+    <title>Raja Motors</title>
 
     @Styles.Render("~/Content/CSS")
     @Scripts.Render("~/Scripts/PageLayout")
@@ -80,44 +80,11 @@
                 <div id="mygroup" class="well">
                     <h5>
                         Services
-                    </h5>
-                    <div id="divCreateGroup" style="display: none">
-                    </div>
-                    <div>
-                        @*@{ Html.RenderAction("GroupsView", "Group"); }*@
-                    </div>
-                </div>
-                <div id="followedgroups" class="well">
-                    <div>
-                        <h5>
-                            FOLLOWED GROUPS
-                        </h5>
-                        <div>
-                            @*@{ Html.RenderAction("FollowedGroups", "Group"); }*@
-                        </div>
-                    </div>
-                </div>
+                    </h5> 
+                </div> 
             </div>
         </div>
-    </div>
-    <div class="modal" id="creategoal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-         style="display: none;" aria-hidden="true">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="enableScroll()">
-                ×
-            </button>
-            <h5 id="myModalLabel">
-                Create Goal
-            </h5>
-        </div>
-        <div class="modal-body" id="createClientModal">
-        </div>
-        <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true" onclick="enableScroll()">
-                Close
-            </button>
-        </div>
-    </div>
+    </div> 
 </body>
 </html>
 <style type="text/css">
