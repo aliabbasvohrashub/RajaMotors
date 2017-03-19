@@ -4,3 +4,10 @@ C:\RajaMotors\RajaMotors\RajaMotors\RajaMotors.Core\bin\Debug\AutoMapper.dll
 C:\RajaMotors\RajaMotors\RajaMotors\RajaMotors.Core\bin\Debug\AutoMapper.xml
 C:\RajaMotors\RajaMotors\RajaMotors\RajaMotors.Core\obj\Debug\RajaMotors.Core.dll
 C:\RajaMotors\RajaMotors\RajaMotors\RajaMotors.Core\obj\Debug\RajaMotors.Core.pdb
+C:\Users\Ali\Source\Repos\RajaMotors2\RajaMotors\RajaMotors.Core\bin\Debug\RajaMotors.Core.dll
+C:\Users\Ali\Source\Repos\RajaMotors2\RajaMotors\RajaMotors.Core\bin\Debug\RajaMotors.Core.pdb
+C:\Users\Ali\Source\Repos\RajaMotors2\RajaMotors\RajaMotors.Core\bin\Debug\AutoMapper.dll
+C:\Users\Ali\Source\Repos\RajaMotors2\RajaMotors\RajaMotors.Core\bin\Debug\AutoMapper.xml
+C:\Users\Ali\Source\Repos\RajaMotors2\RajaMotors\RajaMotors.Core\obj\Debug\RajaMotors.Core.csprojResolveAssemblyReference.cache
+C:\Users\Ali\Source\Repos\RajaMotors2\RajaMotors\RajaMotors.Core\obj\Debug\RajaMotors.Core.dll
+C:\Users\Ali\Source\Repos\RajaMotors2\RajaMotors\RajaMotors.Core\obj\Debug\RajaMotors.Core.pdb

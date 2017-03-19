@@ -20,18 +20,14 @@
                 <div style="position: relative">
                     <strong>@Html.ActionLink(item.ClientName, "Index", "Client", new { id = item.ClientId }, null)</strong>
                 </div>
-                <div><small>@item.ClientDateAdded.ToString() - @item.ClientDateModified.ToString()</small></div>
-                <div> 
-                    @*<small>Created by @Html.ActionLink(item.User.UserName, "UserProfile", "Account", new {id = item.UserId}, null) on @item.ClientDateAdded.ToString("dd MMM yyyy -   hh:mm tt ")</small>*@
-                </div>
+                <div>
+                    <small>@item.ClientDateAdded.ToString() - @item.ClientDateModified.ToString()</small>
+                </div> 
             </div>
             <hr />
         }
     </div>
-</div>
-
-
-
+</div>   
 <div class="span4 well" style="margin-left:25px;height:380px;">
     <strong>Vehicles</strong><hr />
     @if (!Model.Vehicles.Any())
@@ -41,40 +37,18 @@
     <div style="max-height:300px;overflow-y:auto;" id="peoplelistcontainer">
         @foreach (var item in Model.Vehicles)
         {
-            <div> 
-                <div style="margin-left:50px;">@Html.ActionLink(@item.VehicleModelName, "UserProfile", "Account", new { id = item.VehicleId }, null)</div>
+            <div>
+                <div style="margin-left: 50px;">
+                    @Html.ActionLink(@item.VehicleModelName, "UserProfile", "Account", new {id = item.VehicleId}, null)
+                </div>
                 <div style="margin-left: 50px;">
                     @*<small>Registered On @item.VehicletDateAdded.ToString("dd MMM yyyy -   hh:mm tt ") </small>*@
                 </div>
             </div>
-            <hr style="margin:23px 0px 0px 0px;" />
+            <hr style="margin: 23px 0px 0px 0px;"/>
         }
     </div>
-</div>
-
-
-<div class="span4 well" style="margin-left:22px;height:380px;">
-    @*<strong>Groups</strong><hr />
-    @if (Model.Groups.Count() == 0)
-    {
-        <div class="alert alert-info">No group to display</div>
-    }
-    <div style="max-height:300px;overflow-y:auto;" id="grouplistcontainer">
-        @foreach (var item in Model.Groups)
-        {
-            <div>
-                <div>@Html.ActionLink(item.GroupName, "Index", "Group", new { id = item.GroupId }, null)</div>
-                <div><small><strong>@Html.Action("NoOfUsers", "Group", new { id = item.GroupId })</strong> Members</small></div>
-                <div><small>Created On @item.CreatedDate.ToString("dd MMM yyyy -   hh:mm tt ") </small></div>
-            </div>
-            <hr style="margin:23px 0px 0px 0px;" />
-        }
-    </div>*@
-</div>
-
-
-
-
+</div>  
 
 <style type="text/css">
     .thumbnail {
@@ -89,6 +63,5 @@
         $('#goallistcontainer').niceScroll();
         $('#grouplistcontainer').niceScroll();
         $('#peoplelistcontainer').niceScroll();
-    });
-
+    }); 
 </script>
