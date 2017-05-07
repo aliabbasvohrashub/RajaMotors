@@ -1,0 +1,10 @@
+C:\Users\Ali\Source\Repos\RajaMotors2\RajaMotors\RajaMotors.Model\bin\Release\RajaMotors.Model.dll.config
+C:\Users\Ali\Source\Repos\RajaMotors2\RajaMotors\RajaMotors.Model\bin\Release\RajaMotors.Model.dll
+C:\Users\Ali\Source\Repos\RajaMotors2\RajaMotors\RajaMotors.Model\bin\Release\RajaMotors.Model.pdb
+C:\Users\Ali\Source\Repos\RajaMotors2\RajaMotors\RajaMotors.Model\bin\Release\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Ali\Source\Repos\RajaMotors2\RajaMotors\RajaMotors.Model\bin\Release\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Ali\Source\Repos\RajaMotors2\RajaMotors\RajaMotors.Model\bin\Release\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Ali\Source\Repos\RajaMotors2\RajaMotors\RajaMotors.Model\bin\Release\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Ali\Source\Repos\RajaMotors2\RajaMotors\RajaMotors.Model\obj\Release\RajaMotors.Model.csprojResolveAssemblyReference.cache
+C:\Users\Ali\Source\Repos\RajaMotors2\RajaMotors\RajaMotors.Model\obj\Release\RajaMotors.Model.dll
+C:\Users\Ali\Source\Repos\RajaMotors2\RajaMotors\RajaMotors.Model\obj\Release\RajaMotors.Model.pdb

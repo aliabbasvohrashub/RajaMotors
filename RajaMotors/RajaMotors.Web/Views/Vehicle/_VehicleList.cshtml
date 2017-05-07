@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNet.Identity
 @model IEnumerable<RajaMotors.Web.ViewModels.VehicleViewModel>
 @{
-    ViewBag.Title = "List of Vehicles";
+    ViewBag.Title = "List of Cars";
 }
 <div class="container-fluid">
     <div class="row-fluid">
@@ -10,11 +10,11 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>VehicleName</th>
-                            <th>ClientName</th>
-                            <th>ClientMobile</th>
-                            <th>ModelName</th>
-                            <th>ModelNumber</th>
+                            <th>Car Name</th>
+                            <th>Client Name</th>
+                            <th>Client Mobile</th>
+                            <th>Model Name</th>
+                            <th>Model Number</th>
                             <th>Services</th>
                             <th>DateAdded</th>
                             <th>Active</th>
@@ -53,7 +53,7 @@
                                 </td>
                                 <td>
                                     @Html.ActionLink("Edit", "Edit", "Vehicle",     new { clientId = item.ClientId, vehicleId = item.VehicleId }, new { @class = "btn btn-primary btn-small" })
-                                    @Html.ActionLink("Detail", "Detail", "Vehicle", new { clientId = item.ClientId, vehicleId = item.VehicleId }, new { @class = "btn btn-primary btn-small" })
+                                    @Html.ActionLink("Detail", "Details", "Vehicle", new { clientId = item.ClientId, vehicleId = item.VehicleId }, new { @class = "btn btn-primary btn-small" })
                                     @Html.ActionLink("Delete", "Delete", "Vehicle", new { clientId = item.ClientId, vehicleId = item.VehicleId }, new { @class = "btn btn-primary btn-small" })
                                 </td>
                             </tr>

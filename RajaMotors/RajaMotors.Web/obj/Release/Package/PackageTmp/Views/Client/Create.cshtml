@@ -1,0 +1,133 @@
+﻿@using Microsoft.AspNet.Identity
+@model RajaMotors.Web.ViewModels.ClientViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "";
+} 
+
+<style type="text/css">
+    .modalInput {
+        margin: 3px 0 3px 0 !important;
+    }
+</style> 
+<div>
+    @using (Html.BeginForm("Create", "Client", FormMethod.Post, new { @id = "clientForm" }))
+            {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true); 
+        <h3>Add Client</h3>
+        <table class="table">
+            <tr>
+                <td>
+                    @Html.TextBoxFor(model => model.ClientName, new { id= "ClientName", @class = "span3", @placeholder = "Enter the Name" })  
+                    @Html.ValidationMessageFor(model => model.ClientName)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.TextBoxFor(model => model.ClientMobile, new { @class = "modalInput", @placeholder = "Mobile Number" })
+                    @Html.ValidationMessageFor(model => model.ClientMobile)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.TextBoxFor(model => model.ClientAddress, new { @class = "modalInput", @placeholder = "Address " })
+                    @Html.ValidationMessageFor(model => model.ClientAddress)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.TextBoxFor(model => model.ClientAddress1, new { @class = "modalInput", @placeholder = "Address " })
+                    @Html.ValidationMessageFor(model => model.ClientAddress1)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.TextBoxFor(model => model.ClientAddress2, new { @class = "modalInput", @placeholder = "Address " })
+                    @Html.ValidationMessageFor(model => model.ClientAddress2)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.TextBoxFor(model => model.ClientDateAdded, new { @class = "ui-datepicker modalInput", @placeholder = "Date" })
+                    @Html.ValidationMessageFor(model => model.ClientDateAdded)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button id="submitbtn" class="btn btn-primary" value="Submit"> Create</button>&nbsp;&nbsp; 
+                    <button class="btn" type="reset" id="canclebtn" value="Cancel">Cancel</button>
+                </td>
+            </tr>
+            @Html.Hidden("UserId", User.Identity.GetUserId())
+        </table>
+    }
+</div>
+
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+
+
+        $("#canclebtn").click(function (e) {
+            $('#createClient').modal('toggle'); 
+            e.preventDefault();
+        });
+        $('.ui-datepicker').each(function (i, v) {
+            $(v).datepicker({
+                dateFormat: 'dd-M-yy',
+                buttonImage: '@Url.Content("~/Content/calendar.gif")',
+                buttonImageOnly: true,
+                showOn: "button"
+            });
+
+        });
+
+        $('#clientForm').submit(function (e) {
+            var target = $('#ClientName').val();
+            if (target != '') {
+
+                return true;
+            }
+            else { 
+                e.preventDefault();
+                return false;
+            }
+        });
+
+
+
+            //var target = $('#Target').val();
+            //if (target != '') {
+            //    if (DecimalValidate(target)) {
+            //        $('#NumberValidation').html('');
+            //        return true;
+            //    }
+            //    else {
+            //        $('#NumberValidation').html('<label class="field-validation-error">Please enter valid status</label>');
+            //        e.preventDefault();
+            //        return false;
+            //    }
+            //}
+
+        
+
+    });   
+
+    function DecimalValidate(num) {
+        var regex = /^[-+]?[0-9]+(\.[0-9]+)?$/;
+        if (regex.test(num)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+</script>
+<script src="~/Scripts/jquery-1.7.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

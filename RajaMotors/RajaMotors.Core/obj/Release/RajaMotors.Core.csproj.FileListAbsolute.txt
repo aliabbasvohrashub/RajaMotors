@@ -1,0 +1,7 @@
+C:\Users\Ali\Source\Repos\RajaMotors2\RajaMotors\RajaMotors.Core\bin\Release\RajaMotors.Core.dll
+C:\Users\Ali\Source\Repos\RajaMotors2\RajaMotors\RajaMotors.Core\bin\Release\RajaMotors.Core.pdb
+C:\Users\Ali\Source\Repos\RajaMotors2\RajaMotors\RajaMotors.Core\bin\Release\AutoMapper.dll
+C:\Users\Ali\Source\Repos\RajaMotors2\RajaMotors\RajaMotors.Core\bin\Release\AutoMapper.xml
+C:\Users\Ali\Source\Repos\RajaMotors2\RajaMotors\RajaMotors.Core\obj\Release\RajaMotors.Core.csprojResolveAssemblyReference.cache
+C:\Users\Ali\Source\Repos\RajaMotors2\RajaMotors\RajaMotors.Core\obj\Release\RajaMotors.Core.dll
+C:\Users\Ali\Source\Repos\RajaMotors2\RajaMotors\RajaMotors.Core\obj\Release\RajaMotors.Core.pdb

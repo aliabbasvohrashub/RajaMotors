@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic; 
+using System.Collections.Generic;
 
 namespace RajaMotors.Model.Models
 {
@@ -8,13 +8,15 @@ namespace RajaMotors.Model.Models
         public int VehicleId { get; set; }
         public string VehicleModelName { get; set; }
         public string VehicleModelNumber { get; set; }
+        public string VehicleSerialNumber { get; set; }
+        public string VehicleChasisNumber { get; set; }
+        public string KilometersDriven { get; set; }
         public DateTime VehicletDateAdded { get; set; }
-        public DateTime? VehicletDateModified { get; set; } 
+        public DateTime? VehicletDateModified { get; set; }
         public bool VehicleIsActive { get; set; }
-
-        public int ClientId{ get; set; }
-        public virtual Client Client {get;set;}
-        public virtual ICollection<Service> services { get; set;}
+        public int ClientId { get; set; }
+        public virtual Client Client { get; set; }
+        public virtual ICollection<Service> services { get; set; }
         public Vehicle()
         {
             VehicletDateAdded = System.DateTime.Now;

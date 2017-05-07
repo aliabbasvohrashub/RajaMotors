@@ -4,33 +4,52 @@
 @{
     ViewBag.Title = "Create";
     Layout = "";
-} 
+}
 
 <style type="text/css">
     .modalInput {
         margin: 3px 0 3px 0 !important;
     }
-</style> 
+</style>
 <div>
-    @using (Html.BeginForm("Create", "Vehicle", FormMethod.Post, new {@id = "vehicleForm"}))
+    @using (Html.BeginForm("Create", "Vehicle", FormMethod.Post, new { @id = "vehicleForm" }))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
         ;
-        <h3>Add Vehicle</h3>
+        <h3>Add Car</h3>
         <table class="table">
             <tr>
                 <td>
-                    @Html.TextBoxFor(model => model.VehicleModelName, new {id = "VehicleModelName", @class = "span3", @placeholder = "Enter the Name"})
+                    @Html.TextBoxFor(model => model.VehicleModelName, new { @class = "modalInput", @placeholder = "Model Name" })
                     @Html.ValidationMessageFor(model => model.VehicleModelName)
                 </td>
             </tr>
             <tr>
                 <td>
-                    @Html.TextBoxFor(model => model.VehicleModelNumber, new {@class = "modalInput", @placeholder = "Model Number"})
+                    @Html.TextBoxFor(model => model.VehicleModelNumber, new { @class = "modalInput", @placeholder = "Model Number" })
                     @Html.ValidationMessageFor(model => model.VehicleModelNumber)
                 </td>
             </tr>
+            <tr>
+                <td>
+                    @Html.TextBoxFor(model => model.VehicleSerialNumber, new { @class = "modalInput", @placeholder = "Serial Number" })
+                    @Html.ValidationMessageFor(model => model.VehicleSerialNumber)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.TextBoxFor(model => model.VehicleChasisNumber, new { @class = "modalInput", @placeholder = "Chasis Number" })
+                    @Html.ValidationMessageFor(model => model.VehicleChasisNumber)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.TextBoxFor(model => model.KilometersDriven, new { @class = "modalInput", @placeholder = "KilometersDriven" })
+                    @Html.ValidationMessageFor(model => model.KilometersDriven)
+                </td>
+            </tr>
+
             <tr>
                 <td>
                     <button id="submitbtn" class="btn btn-primary" value="Submit"> Create</button>&nbsp;&nbsp;
@@ -39,15 +58,15 @@
             </tr>
         </table>
         @Html.Hidden("UserId", User.Identity.GetUserId())
-        @Html.HiddenFor(model=>model.ClientId, new { @Value = Model.ClientId })
+        @Html.HiddenFor(model => model.ClientId, new { @Value = Model.ClientId })
     }
 </div>
 
 
-<script type="text/javascript"> 
-    $(document).ready(function () { 
+<script type="text/javascript">
+    $(document).ready(function () {
         $("#canclebtn").click(function (e) {
-            $('#createVehicle').modal('toggle'); 
+            $("div.modal-backdrop.in").click();
             e.preventDefault();
         });
         $('.ui-datepicker').each(function (i, v) {
@@ -66,12 +85,12 @@
 
                 return true;
             }
-            else { 
+            else {
                 e.preventDefault();
                 return false;
             }
-        }); 
-    });   
+        });
+    });
 
     function DecimalValidate(num) {
         var regex = /^[-+]?[0-9]+(\.[0-9]+)?$/;

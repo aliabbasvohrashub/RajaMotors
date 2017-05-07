@@ -1,0 +1,57 @@
+﻿@using Microsoft.AspNet.Identity
+@model RajaMotors.Web.ViewModels.ClientViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+<div>
+    @using (Html.BeginForm("Create", "Client", FormMethod.Post, new { @id = "clientForm" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true);
+
+    <fieldset>
+        <legend>
+            Create Client
+        </legend>
+        <table class="table-striped">
+            <tr> 
+                <td>ClientName </td>
+                <td>ClientMobile </td>
+                <td>ClientAddress</td>
+                <td>ClientDateAdded</td> 
+            </tr>
+            <tr> 
+                <td>
+                    @Html.TextBoxFor(model => model.ClientName)
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.ClientMobile)
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.ClientAddress)
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.ClientDateAdded)
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.ClientDateModified)
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <button id="submitbtn" class="btn btn-primary" value="Submit"> Create</button>&nbsp;&nbsp;
+                    <button class="btn" type="reset" value="Cancel" onclick="window.location.href='@Url.Action("Index", "Home")'">Cancel</button>
+                </td>
+            </tr>
+            @Html.Hidden("UserId", User.Identity.GetUserId())
+        </table>
+    </fieldset>
+    }
+</div>
+ 

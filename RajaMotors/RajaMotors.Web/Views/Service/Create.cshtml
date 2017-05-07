@@ -42,7 +42,8 @@
 <script type="text/javascript"> 
     $(document).ready(function () {  
         $("#canclebtn").click(function (e) {
-            $('#createService').modal('toggle'); 
+           // $('#createService').modal('toggle');
+            $("div.modal-backdrop.in").click();
             e.preventDefault();
         });
         $('.ui-datepicker').each(function (i, v) {

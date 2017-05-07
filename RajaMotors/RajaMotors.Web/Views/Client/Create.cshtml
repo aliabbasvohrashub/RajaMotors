@@ -73,7 +73,7 @@
 
 
         $("#canclebtn").click(function (e) {
-            $('#createClient').modal('toggle'); 
+            $("div.modal-backdrop.in").click();
             e.preventDefault();
         });
         $('.ui-datepicker').each(function (i, v) {

@@ -1,0 +1,67 @@
+﻿@using Microsoft.AspNet.Identity
+@model IEnumerable<RajaMotors.Web.ViewModels.VehicleViewModel>
+@{
+    ViewBag.Title = "List of Cars";
+}
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="col_w620_content">
+            <fieldset>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Car Name</th>
+                            <th>Client Name</th>
+                            <th>Client Mobile</th>
+                            <th>Model Name</th>
+                            <th>Model Number</th>
+                            <th>Services</th>
+                            <th>DateAdded</th>
+                            <th>Active</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+            {
+                            <tr>
+                                <td>
+                                    @item.VehicleModelName
+                                </td>
+                                <td>
+                                    @item.Client.ClientName
+                                </td>
+                                <td>
+                                    @item.Client.ClientMobile
+                                </td>
+                                <td>
+                                    @item.VehicleModelName
+                                </td>
+                                <td>
+                                    @item.VehicleModelNumber
+                                </td>
+                                <td>
+                                    <a href="/Service/ServiceList?clientId=@item.ClientId&vehicleId=@item.VehicleId&filterBy=''&page=0&sortBy='Name''">
+                                        @item.serviceCount
+                                    </a>    
+                                </td>
+                                <td>
+                                    @item.VehicletDateAdded
+                                </td>
+                                <td>
+                                    @item.VehicleIsActive
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", "Vehicle",     new { clientId = item.ClientId, vehicleId = item.VehicleId }, new { @class = "btn btn-primary btn-small" })
+                                    @Html.ActionLink("Detail", "Detail", "Vehicle", new { clientId = item.ClientId, vehicleId = item.VehicleId }, new { @class = "btn btn-primary btn-small" })
+                                    @Html.ActionLink("Delete", "Delete", "Vehicle", new { clientId = item.ClientId, vehicleId = item.VehicleId }, new { @class = "btn btn-primary btn-small" })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </fieldset>
+        </div>
+    </div>
+</div>

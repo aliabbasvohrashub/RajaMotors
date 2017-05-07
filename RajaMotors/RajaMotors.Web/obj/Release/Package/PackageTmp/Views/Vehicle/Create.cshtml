@@ -1,0 +1,89 @@
+﻿@using Microsoft.AspNet.Identity
+@model RajaMotors.Web.ViewModels.VehicleViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "";
+} 
+
+<style type="text/css">
+    .modalInput {
+        margin: 3px 0 3px 0 !important;
+    }
+</style> 
+<div>
+    @using (Html.BeginForm("Create", "Vehicle", FormMethod.Post, new {@id = "vehicleForm"}))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        ;
+        <h3>Add Car</h3>
+        <table class="table">
+            <tr>
+                <td>
+                    @Html.TextBoxFor(model => model.VehicleModelName, new {id = "VehicleModelName", @class = "span3", @placeholder = "Enter the Name"})
+                    @Html.ValidationMessageFor(model => model.VehicleModelName)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.TextBoxFor(model => model.VehicleModelNumber, new {@class = "modalInput", @placeholder = "Model Number"})
+                    @Html.ValidationMessageFor(model => model.VehicleModelNumber)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button id="submitbtn" class="btn btn-primary" value="Submit"> Create</button>&nbsp;&nbsp;
+                    <button class="btn" type="reset" id="canclebtn" value="Cancel">Cancel</button>
+                </td>
+            </tr>
+        </table>
+        @Html.Hidden("UserId", User.Identity.GetUserId())
+        @Html.HiddenFor(model=>model.ClientId, new { @Value = Model.ClientId })
+    }
+</div>
+
+
+<script type="text/javascript"> 
+    $(document).ready(function () { 
+        $("#canclebtn").click(function (e) {
+            $('#createVehicle').modal('toggle'); 
+            e.preventDefault();
+        });
+        $('.ui-datepicker').each(function (i, v) {
+            $(v).datepicker({
+                dateFormat: 'dd-M-yy',
+                buttonImage: '@Url.Content("~/Content/calendar.gif")',
+                buttonImageOnly: true,
+                showOn: "button"
+            });
+
+        });
+
+        $('#vehicleForm').submit(function (e) {
+            var target = $('#VehicleModelName').val();
+            if (target != '') {
+
+                return true;
+            }
+            else { 
+                e.preventDefault();
+                return false;
+            }
+        }); 
+    });   
+
+    function DecimalValidate(num) {
+        var regex = /^[-+]?[0-9]+(\.[0-9]+)?$/;
+        if (regex.test(num)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+</script>
+<script src="~/Scripts/jquery-1.7.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

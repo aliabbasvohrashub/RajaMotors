@@ -413,6 +413,7 @@
     <Content Include="Content\less\utilities.less" />
     <Content Include="Content\less\variables.less" />
     <Content Include="Content\less\wells.less" />
+    <None Include="Properties\PublishProfiles\aliabbas.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\handlebars-1.0.rc.1.js" />
     <Content Include="Scripts\jqDnR.js" />
